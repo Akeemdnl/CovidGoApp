@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_main"
+    android:padding="10dp"
+    tools:context=".View.MainFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:fillViewport="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvStatsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:text="@string/stats_title"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvTotalCases"
+                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total Cases:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                                <TextView
+                                    android:id="@+id/tvTotalCases"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?attr/textAppearanceBody1"
+                                    android:text="CaseNum" />
+
+                                <TextView
+                                    android:id="@+id/tvNewCases"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="?attr/textAppearanceBody2"
+                                    android:text="NewCaseNum" />
+                        </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvActiveCases"
+                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Active Cases:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <TextView
+                                    android:id="@+id/tvActiveCases"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                                    android:text="CaseNum"/>
+                        </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvTotalRecovered"
+                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total Recovered:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <TextView
+                                    android:id="@+id/tvTotalRecovered"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                                    android:text="CaseNum"/>
+
+                                <TextView
+                                    android:id="@+id/tvNewRecovered"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                                    android:text="NewRecoveredNum"/>
+                        </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvTotalDeaths"
+                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total Deaths:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <TextView
+                                    android:id="@+id/tvTotalDeaths"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                                    android:text="CaseNum"/>
+
+                                <TextView
+                                    android:id="@+id/tvNewDeaths"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                                    android:text="NewDeathsdNum"/>
+                        </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvCritical"
+                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="ICU:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <TextView
+                                    android:id="@+id/tvCritical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                                    android:text="CaseNum"/>
+
+                        </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/tvGlobalStatsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:text="@string/global_title"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvGlobal"
+                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Total Cases:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <TextView
+                                    android:id="@+id/tvGlobalTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                                    android:text="CaseNum"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Active Cases:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <TextView
+                                    android:id="@+id/tvGlobalActive"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                                    android:text="CaseNum"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Recovered:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <TextView
+                                    android:id="@+id/tvGlobalReovered"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                                    android:text="CaseNum"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Deaths:"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <TextView
+                                    android:id="@+id/tvGlobalDeaths"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                                    android:text="CaseNum"/>
+
+                        </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvTopCountries"
+                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Top 10 Countries with highest cases"
+                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+                                <com.github.mikephil.charting.charts.BarChart
+                                    android:id="@+id/chart"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+        </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
