@@ -1,1 +1,2 @@
 # CovidGoApp
+Final year project
