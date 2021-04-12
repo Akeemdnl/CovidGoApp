@@ -2,27 +2,22 @@ package com.example.covidgofyp.ViewModel;
 
 import android.app.Application;
 import android.content.Context;
-import android.widget.Toast;
+import android.graphics.Color;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.covidgofyp.Model.CovidData;
 import com.example.covidgofyp.Model.CovidGlobalData;
 import com.example.covidgofyp.Model.TopCountriesData;
 import com.example.covidgofyp.Repositories.CovidDataRepo;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.MulticastSocket;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
@@ -30,7 +25,14 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<CovidData> covidData;
     private CovidDataRepo covidDataRepo;
     private MutableLiveData<CovidGlobalData> covidGlobalData;
-    private  MutableLiveData<List<TopCountriesData>> chartData;
+    private MutableLiveData<List<TopCountriesData>> chartData;
+    private List<TopCountriesData> topCountriesDataList;
+    private MutableLiveData<BarData> barData;
+    private BarDataSet barDataSet;
+    private BarDataSet barDataSet2;
+    private ArrayList<String> xAxis = new ArrayList<>();
+    ArrayList<BarEntry> valueSet = new ArrayList<>();
+    private TopCountriesData topCountriesData;
     Context context;
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -39,6 +41,7 @@ public class MainViewModel extends AndroidViewModel {
         covidData = covidDataRepo.setCovidData(context);
         covidGlobalData = covidDataRepo.setCovidGlobalData(context);
         chartData = covidDataRepo.setTopCountries(context);
+
     }
 
     public MutableLiveData<CovidData> getCovidData() {
@@ -50,6 +53,23 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<List<TopCountriesData>> getChartData() {
+//        topCountriesDataList = chartData.getValue();
+//
+//        if(topCountriesDataList != null){
+//            //System.out.println(topCountriesData.toString());
+//            for(int i=0; i<topCountriesDataList.size(); i++){
+//                topCountriesData = topCountriesDataList.get(i);
+//                xAxis.add(topCountriesData.getCountry());
+//                BarEntry val = new BarEntry(i, Float.parseFloat(topCountriesData.getCases()));
+//                valueSet.add(val);
+//                barDataSet = new BarDataSet(valueSet, "Total Cases");
+//                barDataSet.setColor(Color.rgb(255,0,0));
+//                BarData data = new BarData(barDataSet);
+//                barData.setValue(data);
+//
+//            }
+//        }
+
         return chartData;
     }
 }

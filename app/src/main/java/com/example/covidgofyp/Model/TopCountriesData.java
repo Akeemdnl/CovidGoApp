@@ -28,7 +28,7 @@ public class TopCountriesData {
     @NonNull
     @Override
     public String toString() {
-        String testString = "country: " + this.getCountry() + "\n" +
+        String testString = "\ncountry: " + this.getCountry() + "\n" +
                         "cases: " + this.getCases() + "\n" +
                         "flag:" + this.getFlagUrl() + "\n";
         return testString;

@@ -8,16 +8,47 @@
     android:padding="10dp"
     tools:context=".View.MainFragment">
 
-        <ScrollView
+        <LinearLayout
+            android:id="@+id/chipsLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                        <com.google.android.material.chip.Chip
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/chipStats"
+                            android:text="Covid Statistics"/>
+
+                        <com.google.android.material.chip.Chip
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/chipNews"
+                            android:text="Latest News"/>
+                </com.google.android.material.chip.ChipGroup>
+
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/chipsLayout"
             app:layout_constraintBottom_toBottomOf="parent"
             android:fillViewport="false">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
             android:layout_gravity="center_horizontal"
@@ -297,7 +328,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="510dp"
                             android:gravity="center"
                             android:padding="10dp"
                             android:orientation="vertical">
@@ -311,9 +342,7 @@
                                 <com.github.mikephil.charting.charts.BarChart
                                     android:id="@+id/chart"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"/>
-
-
+                                    android:layout_height="match_parent"/>
                         </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>

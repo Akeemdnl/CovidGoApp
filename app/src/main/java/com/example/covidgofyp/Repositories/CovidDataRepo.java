@@ -33,7 +33,7 @@ public class CovidDataRepo {
         }
         return instance;
     }
-
+    //Get Malaysia covid data from REST api
     public MutableLiveData<CovidData> setCovidData(Context context) {
         MutableLiveData<CovidData> data = new MutableLiveData<>();
         String url ="https://disease.sh/v3/covid-19/countries/malaysia?strict=true";
@@ -66,6 +66,7 @@ public class CovidDataRepo {
         return data;
     }
 
+    //Get global covid data from REST Api
     public MutableLiveData<CovidGlobalData> setCovidGlobalData(Context context) {
         MutableLiveData<CovidGlobalData> data = new MutableLiveData<>();
         String url ="https://disease.sh/v3/covid-19/all";
@@ -87,13 +88,13 @@ public class CovidDataRepo {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("Error Retrieving Data from global API");
+                System.out.println("Error Retrieving Data for global API " +error);
             }
         });
         MySingleton.getInstance(context).addToRequestQueue(request);
         return data;
     }
-
+    //Get top countries from REST api
     public MutableLiveData<List<TopCountriesData>> setTopCountries (Context context) {
         MutableLiveData<List<TopCountriesData>> data = new MutableLiveData<>();
         String url ="https://disease.sh/v3/covid-19/countries?sort=cases";
