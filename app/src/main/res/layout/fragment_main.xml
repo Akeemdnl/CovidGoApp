@@ -9,23 +9,27 @@
     tools:context=".View.MainFragment">
 
         <LinearLayout
-            android:id="@+id/chipsLayouts"
+            android:id="@+id/chipsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/scrollView"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:focusable="true">
 
                         <com.google.android.material.chip.Chip
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:id="@+id/chipStats"
+                            android:checked="true"
                             android:text="Covid Statistics"/>
 
                         <com.google.android.material.chip.Chip
@@ -35,14 +39,13 @@
                             android:text="Latest News"/>
                 </com.google.android.material.chip.ChipGroup>
 
-
         </LinearLayout>
 
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/chipsLayouts"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/chipsLayout"
             app:layout_constraintBottom_toBottomOf="parent"
             android:fillViewport="false">
 
@@ -64,7 +67,6 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvTotalCases"
-                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -102,11 +104,11 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvActiveCases"
-                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    app:cardElevation="8dp">
+                    app:cardElevation="8dp"
+                    style="@style/Theme.App">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -133,7 +135,6 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvTotalRecovered"
-                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -209,7 +210,6 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvCritical"
-                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -249,7 +249,6 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvGlobal"
-                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -320,7 +319,6 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cvTopCountries"
-                    app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -328,18 +326,12 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="510dp"
+                            android:layout_height="520dp"
                             android:gravity="center"
                             android:padding="10dp"
                             android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Top 10 Countries with highest cases"
-                                    android:textAppearance="?attr/textAppearanceHeadline6"/>
-
-                                <com.github.mikephil.charting.charts.BarChart
+                                <com.github.mikephil.charting.charts.CombinedChart
                                     android:id="@+id/chart"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"/>

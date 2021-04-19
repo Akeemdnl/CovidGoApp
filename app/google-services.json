@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "83789905296",
+    "project_id": "covidgo-c0004",
+    "storage_bucket": "covidgo-c0004.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83789905296:android:e991b53e14c03f9b858715",
+        "android_client_info": {
+          "package_name": "com.example.covidgofyp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83789905296-emfc6m4vmi6mpmi2vuk1q8nh9bcp6ui1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEL6ooM1xk7o3IVWAzLkBp0mMLqv13uw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83789905296-emfc6m4vmi6mpmi2vuk1q8nh9bcp6ui1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

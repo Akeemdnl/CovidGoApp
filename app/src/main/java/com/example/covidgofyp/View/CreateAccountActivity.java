@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.covidgofyp.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
     private Button btnCreateAcc;
+    private TextInputEditText etFullname, etUsername, etEmail, etPassword, etConfirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

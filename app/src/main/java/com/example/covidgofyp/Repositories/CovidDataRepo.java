@@ -106,6 +106,7 @@ public class CovidDataRepo {
                         JSONObject country = response.getJSONObject(i);
                         topCountriesData.add(new TopCountriesData(country.getString("country"),
                                                                   country.getString("cases"),
+                                                                  country.getString("deaths"),
                                                                   country.getJSONObject("countryInfo").getString("flag")));
                     }
                    data.setValue(topCountriesData);

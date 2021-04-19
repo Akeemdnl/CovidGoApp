@@ -7,10 +7,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.example.covidgofyp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.chip.Chip;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,53 +30,43 @@ public class MainActivity extends AppCompatActivity {
         final Fragment mainFragment = new MainFragment();
         final Fragment secondFragment = new SecondFragment();
         final Fragment thirdFragment = new ThirdFragment();
-
         if(savedInstanceState == null) {
             FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
             fragmentManager
                     .setReorderingAllowed(true)
                     .replace(R.id.container, mainFragment, null)
-                    .addToBackStack("optional")
+                    .addToBackStack(null)
                     .commit();
         }
 
         btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-              FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
               switch (item.getItemId()){
                   case R.id.page_1 :
-                      fragmentManager
-                              .setReorderingAllowed(true)
-                              .replace(R.id.container, mainFragment, null)
-                              .addToBackStack(null)
-                              .commit();
+                        getFragment(mainFragment);
                       return true;
 
                   case R.id.page_2 :
-                     /* TextView view = findViewById(R.id.page_1);
-                      view.setTextColor(Color.GREEN);*/
-                      fragmentManager
-                              .setReorderingAllowed(true)
-                              .replace(R.id.container, secondFragment, null)
-                              .addToBackStack(null)
-                              .commit();
+                      getFragment(secondFragment);
                       return true;
 
                   case R.id.page_3 :
-                      fragmentManager
-                              .setReorderingAllowed(true)
-                              .replace(R.id.container,  thirdFragment, null )
-                              .addToBackStack(null)
-                              .commit();
+                      getFragment(thirdFragment);
                       return true;
               }
               return false;
 
             }
         });
+    }
 
-
+    public void getFragment(Fragment fragment){
+        FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
+        fragmentManager
+                .setReorderingAllowed(true)
+                .replace(R.id.container, fragment, null)
+                .addToBackStack(null)
+                .commit();
     }
 }
