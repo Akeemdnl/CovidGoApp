@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class CreateAccountActivity extends AppCompatActivity {
 
     private Button btnCreateAcc;
-    private TextInputEditText etFullname, etUsername, etEmail, etPassword, etConfirmPassword;
+    private TextInputEditText etFullname, etUsername, etEmail, etPassword, etConfirmPassword, etNric;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
