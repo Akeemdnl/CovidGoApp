@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference dbReference;
     private String userID;
-    //test
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
