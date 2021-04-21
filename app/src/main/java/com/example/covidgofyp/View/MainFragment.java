@@ -87,10 +87,12 @@ public class MainFragment extends Fragment  {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        chipNews.setChecked(false);
+        chipStats.setChecked(true);
+
         MainViewModel mainViewModel;
         mainViewModel = new ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(MainViewModel.class);
-
 
         chipNews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +164,7 @@ public class MainFragment extends Fragment  {
             }
         });
 
+        //Top ten countries graph
         mainViewModel.getChartData().observe(this, new Observer<List<TopCountriesData>>() {
             @Override
             public void onChanged(List<TopCountriesData> topCountriesDataList) {
