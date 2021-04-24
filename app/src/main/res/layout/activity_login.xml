@@ -79,6 +79,14 @@
             android:layout_height="wrap_content"
             android:text="Create an account" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnForgotPassword"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:text="Forgot password?" />
+
     </LinearLayout>
 
 

@@ -81,14 +81,15 @@ public class MainFragment extends Fragment  {
         chart = view.findViewById(R.id.chart);
         chipStats = view.findViewById(R.id.chipStats);
         chipNews = view.findViewById(R.id.chipNews);
+        chipStats.setChecked(true);
+        chipNews.setChecked(false);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        chipNews.setChecked(false);
-        chipStats.setChecked(true);
+
 
         MainViewModel mainViewModel;
         mainViewModel = new ViewModelProvider(this,
@@ -97,10 +98,9 @@ public class MainFragment extends Fragment  {
         chipNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Fragment newsFragment = new NewsFragment();
-                chipNews.setChecked(true);
                 chipStats.setChecked(false);
+                chipNews.setChecked(true);
+                Fragment newsFragment = new NewsFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
                         .setReorderingAllowed(true)

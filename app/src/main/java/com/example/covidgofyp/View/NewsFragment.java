@@ -51,5 +51,13 @@ public class NewsFragment extends Fragment {
                         .commit();
             }
         });
+
+        chipNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chipNews.setChecked(true);
+                chipStats.setChecked(false);
+            }
+        });
     }
 }
