@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.covidgofyp.Model.CovidData;
 import com.example.covidgofyp.Model.CovidGlobalData;
+import com.example.covidgofyp.Model.NewsData;
 import com.example.covidgofyp.Model.TopCountriesData;
 
 import org.json.JSONArray;
@@ -26,6 +27,7 @@ public class CovidDataRepo {
     private CovidData covidData;
     private CovidGlobalData covidGlobalData;
     private List<TopCountriesData> topCountriesData = new ArrayList<>();
+    private List<NewsData> newsDataList = new ArrayList<>();
 
     public static CovidDataRepo getInstance(){
         if(instance == null){
@@ -124,4 +126,5 @@ public class CovidDataRepo {
         MySingleton.getInstance(context).addToRequestQueue(request);
         return data;
     }
+
 }

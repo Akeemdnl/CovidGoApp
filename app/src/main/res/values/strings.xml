@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="stats_title">Malaysia Covid-19 Statistics</string>
     <string name="global_title">Global Statistics</string>
+    <string name="read_here"><u>Read here</u></string>
 </resources>

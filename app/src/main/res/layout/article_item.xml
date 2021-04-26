@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       app:contentPadding="8dp"
+        android:elevation="5dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/newTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="News Title"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
+
+            <TextView
+                android:id="@+id/newsPublishedAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="published at"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+            <ImageView
+                android:id="@+id/newsImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/newsDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:layout_marginBottom="5dp"
+                android:text="News Description"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+            <TextView
+                android:id="@+id/urlToNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:text="@string/read_here"/>
+
+            <TextView
+                android:id="@+id/sourceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Source:"/>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
