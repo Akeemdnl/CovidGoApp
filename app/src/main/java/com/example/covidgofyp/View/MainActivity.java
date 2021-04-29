@@ -48,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
         btmNav = findViewById(R.id.bottom_nav);
         container = findViewById(R.id.container);
 
-        final Fragment mainFragment = new MainFragment();
+        Fragment mainFragment = new MainFragment();
         final Fragment secondFragment = new SecondFragment();
         final Fragment thirdFragment = new ThirdFragment();
+
         if(savedInstanceState == null) {
             FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
             fragmentManager

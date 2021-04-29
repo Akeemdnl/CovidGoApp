@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_main"
     tools:context=".View.NewsFragment">
+
     <LinearLayout
         android:id="@+id/chipsLayout"
         android:layout_width="match_parent"
@@ -25,17 +26,15 @@
             android:focusable="true">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chipStats"
+                android:id="@+id/nchipStats"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:checked="false"
                 android:text="Covid Statistics" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chipNews"
+                android:id="@+id/nchipNews"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:checked="true"
                 android:text="Latest News" />
         </com.google.android.material.chip.ChipGroup>
 

@@ -60,9 +60,11 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
-        chipNews = view.findViewById(R.id.chipNews);
-        chipStats = view.findViewById(R.id.chipStats);
+        chipNews = view.findViewById(R.id.nchipNews);
+        chipStats = view.findViewById(R.id.nchipStats);
         recyclerView = view.findViewById(R.id.rvNews);
+        chipNews.setChecked(true);
+        chipStats.setChecked(false);
         return view;
     }
 
@@ -112,9 +114,6 @@ public class NewsFragment extends Fragment {
 
                 NewsData newsData = response.body();
                 articlesList = new ArrayList<>(Arrays.asList(newsData.getArticles()));
-                for (int i=0; i<5; i++){
-                    System.out.println(articlesList.get(i).getUrlToImage());
-                }
                 putDataInRecyclerView(articlesList);
             }
 
@@ -125,7 +124,7 @@ public class NewsFragment extends Fragment {
         });
 
     }
-
+    //Margin bottom for each news element
     private void putDataInRecyclerView(List<Articles> articlesList) {
         NewsAdapter adapter = new NewsAdapter(getContext(),articlesList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

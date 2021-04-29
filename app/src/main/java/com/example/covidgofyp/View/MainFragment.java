@@ -81,19 +81,17 @@ public class MainFragment extends Fragment  {
         chart = view.findViewById(R.id.chart);
         chipStats = view.findViewById(R.id.chipStats);
         chipNews = view.findViewById(R.id.chipNews);
-        chipStats.setChecked(true);
-        chipNews.setChecked(false);
+
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         MainViewModel mainViewModel;
-        mainViewModel = new ViewModelProvider(this,
-                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(MainViewModel.class);
+        mainViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(MainViewModel.class);
+        chipStats.setChecked(true);
+        chipNews.setChecked(false);
 
         chipNews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +105,14 @@ public class MainFragment extends Fragment  {
                         .replace(R.id.container, newsFragment,null )
                         .addToBackStack(null)
                         .commit();
+            }
+        });
+
+        chipStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chipStats.setChecked(true);
+                chipNews.setChecked(false);
             }
         });
 
