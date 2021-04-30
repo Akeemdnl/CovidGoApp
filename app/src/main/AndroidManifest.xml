@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CovidGoFyp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".View.ResetPasswordActivity"></activity>
+        <activity android:name=".View.AdminActivity"></activity>
+        <activity android:name=".View.ResetPasswordActivity" />
         <activity android:name=".View.CreateAccountActivity" />
         <activity android:name=".View.LoginActivity">
             <intent-filter>
@@ -26,6 +27,7 @@
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </activity>

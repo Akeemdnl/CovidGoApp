@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CovidGoFyp" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.CovidGoFyp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#6c40be</item>
         <item name="colorPrimaryVariant">#9f6df1</item>

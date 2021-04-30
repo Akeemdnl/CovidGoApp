@@ -26,6 +26,7 @@ public class SecondFragment extends Fragment {
 
     CardView cvApplyNgo, cvStatusNgo;
     Fragment ngoFormFragment = new NgoFormFragment();
+    Fragment ngoStatusFragment = new NgoStatusFragment();
 
     //Required empty constructor
     public SecondFragment() {
@@ -55,11 +56,23 @@ public class SecondFragment extends Fragment {
            @Override
            public void onClick(View v) {
                FragmentManager fragmentManager = getFragmentManager();
-              fragmentManager.beginTransaction()
+               fragmentManager.beginTransaction()
                       .setReorderingAllowed(true)
                       .replace(R.id.container, ngoFormFragment,null )
                       .addToBackStack(null)
                       .commit();
+           }
+       });
+
+       cvStatusNgo.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               FragmentManager fragmentManager = getFragmentManager();
+               fragmentManager.beginTransaction()
+                       .setReorderingAllowed(true)
+                       .replace(R.id.container, ngoStatusFragment,null )
+                       .addToBackStack(null)
+                       .commit();
            }
        });
 

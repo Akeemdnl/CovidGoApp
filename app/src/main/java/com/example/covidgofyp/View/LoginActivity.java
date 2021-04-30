@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.covidgofyp.Model.User;
 import com.example.covidgofyp.R;
 import com.example.covidgofyp.ViewModel.MainViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,12 +20,19 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnLogin, btnCreateAccount, btnForgotPassword;
     private TextInputEditText etEmail, etPassword;
     private FirebaseAuth mAuth;
+    private DatabaseReference dbReference;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,9 +95,28 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if(user.isEmailVerified()){
-                        //redirect to main page
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+
+                        dbReference = FirebaseDatabase.getInstance().getReference("Users");
+                        userID = user.getUid();
+                        //Redirect user to appropriate activity
+                        dbReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                User userProfile = snapshot.getValue(User.class);
+                                String type = userProfile.type;
+
+                                if(type.equals("admin")){
+                                    startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                                }else{
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(LoginActivity.this, "Something went wrong: "+error, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Check your email to verify your account", Toast.LENGTH_LONG).show();

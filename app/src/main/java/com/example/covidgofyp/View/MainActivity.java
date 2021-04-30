@@ -8,21 +8,14 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.example.covidgofyp.Model.User;
 import com.example.covidgofyp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.chip.Chip;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.dialog.MaterialDialogs;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,11 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView btmNav;
-    private FrameLayout container;
     private FirebaseUser user;
     private DatabaseReference dbReference;
     private String userID;
-    //Test
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +37,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btmNav = findViewById(R.id.bottom_nav);
-        container = findViewById(R.id.container);
 
         Fragment mainFragment = new MainFragment();
         final Fragment secondFragment = new SecondFragment();
         final Fragment thirdFragment = new ThirdFragment();
 
         if(savedInstanceState == null) {
-            FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
-            fragmentManager
-                    .setReorderingAllowed(true)
-                    .replace(R.id.container, mainFragment, null)
-                    .addToBackStack(null)
-                    .commit();
+            getFragment(mainFragment);
         }
 
         btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

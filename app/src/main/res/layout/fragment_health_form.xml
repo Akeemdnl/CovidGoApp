@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".View.NgoFormFragment"
+    android:background="@color/background_main"
     android:padding="10dp"
-    android:background="@color/background_main">
+    tools:context=".View.HealthFormFragment">
 
     <TextView
-        android:id="@+id/tvNgoForm"
+        android:id="@+id/tvHealthForm"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,12 +23,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNgoForm">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHealthForm">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tfFullname"
@@ -41,7 +41,7 @@
             android:layout_marginBottom="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoFullname"
+                android:id="@+id/healthFullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -57,7 +57,7 @@
             android:layout_marginBottom="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoPhoneNum"
+                android:id="@+id/healthPhoneNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,9 +73,10 @@
             android:layout_marginBottom="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoNRIC"
+                android:id="@+id/healthNRIC"
+                android:inputType="number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,7 +90,7 @@
             android:layout_marginBottom="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoAddress"
+                android:id="@+id/healthAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -100,17 +101,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tfAidDescription"
+            android:id="@+id/tfHealthDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description of aid needed"
+            android:hint="Health Description"
             app:boxBackgroundColor="#D9C1FF"
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp"
             android:layout_marginBottom="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoAidDescription"
+                android:id="@+id/healthDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -126,8 +127,9 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             android:text="*Please ensure that the information given are correct"/>
 
+
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSubmitNgo"
+            android:id="@+id/btnSubmitHealth"
             android:layout_width="103dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -137,6 +139,7 @@
             app:elevation="30dp" />
 
     </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

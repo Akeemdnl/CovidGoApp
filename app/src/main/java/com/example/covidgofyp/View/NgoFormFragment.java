@@ -33,7 +33,7 @@ public class NgoFormFragment extends Fragment {
     private TextInputEditText ngoFullName, ngoPhoneNum, ngoNRIC, ngoAddress, ngoAidDescription;
     private Button btnSubmitNgo;
     private FirebaseUser user;
-    private DatabaseReference reference, refNgo;
+    private DatabaseReference reference;
     private FirebaseDatabase rootNode;
     private String userId;
 
@@ -91,7 +91,6 @@ public class NgoFormFragment extends Fragment {
     private void submitForm() {
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Sumbangan");
-        refNgo = rootNode.getReference().child("Sumbangan");
 
         String fullname = ngoFullName.getText().toString();
         String phoneNum = ngoPhoneNum.getText().toString();
@@ -104,8 +103,8 @@ public class NgoFormFragment extends Fragment {
 
         if(validation){
             NgoForm ngoForm = new NgoForm(fullname, phoneNum, nric, address, aidDescription, userId);
-            reference.setValue(ngoForm);
-            FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId).setValue(ngoForm);
+            reference.push().setValue(ngoForm);
+            FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId).push().setValue(ngoForm);
 
             Toast.makeText(getContext(), "Your form has been sent for verification", Toast.LENGTH_SHORT).show();
             Fragment secondFragment = new SecondFragment();
