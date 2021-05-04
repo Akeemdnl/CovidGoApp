@@ -26,15 +26,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class NgoStatusFragment extends Fragment {
+public class AdminNgoApplicationFragment extends Fragment {
 
     FirebaseUser user;
     DatabaseReference reference;
     String userId;
     List<NgoForm> ngoFormList = new ArrayList<>();
     RecyclerView recyclerView;
-    public NgoStatusFragment() {
+
+    public AdminNgoApplicationFragment() {
         // Required empty public constructor
     }
 
@@ -42,8 +42,8 @@ public class NgoStatusFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_ngo_status, container, false);
-        recyclerView = view.findViewById(R.id.rvNgoStatus);
+        View view = inflater.inflate(R.layout.fragment_admin_ngo_application, container, false);
+        recyclerView = view.findViewById(R.id.rvNgoApplication);
         return view;
     }
 
@@ -54,13 +54,15 @@ public class NgoStatusFragment extends Fragment {
         reference = FirebaseDatabase.getInstance().getReference("Sumbangan");
         userId = user.getUid();
 
-        reference.child(userId).addValueEventListener(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    NgoForm ngoForm = dataSnapshot.getValue(NgoForm.class);
-                    if (ngoForm != null){
-                        ngoFormList.add(ngoForm);
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    for (DataSnapshot childSnapshot :  dataSnapshot.getChildren()){
+                        NgoForm ngoForm = childSnapshot.getValue(NgoForm.class);
+                        if (ngoForm != null){
+                            ngoFormList.add(ngoForm);
+                        }
                     }
                 }
                 putDataInRecyclerView(ngoFormList);
@@ -74,10 +76,11 @@ public class NgoStatusFragment extends Fragment {
     }
 
     private void putDataInRecyclerView(List<NgoForm> ngoFormList) {
-        NgoStatusAdapter adapter = new NgoStatusAdapter(getContext(),ngoFormList);
+        AdminNgoStatusAdapter adapter = new AdminNgoStatusAdapter(getContext(),ngoFormList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ItemDecorator decorator = new ItemDecorator(30);
         recyclerView.addItemDecoration(decorator);
         recyclerView.setAdapter(adapter);
+
     }
 }

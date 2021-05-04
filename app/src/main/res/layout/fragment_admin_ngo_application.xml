@@ -6,25 +6,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_main"
     android:padding="5dp"
-    tools:context=".View.NgoStatusFragment">
+    tools:context=".View.AdminNgoApplicationFragment">
 
     <TextView
-        android:id="@+id/tvNgoStatusTitle"
+        android:id="@+id/tvNgoApplicationTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="NGO Application List"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-        android:text="Ngo Application Status"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNgoStatus"
+        android:id="@+id/rvNgoApplication"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/tvNgoStatusTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvNgoApplicationTitle"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

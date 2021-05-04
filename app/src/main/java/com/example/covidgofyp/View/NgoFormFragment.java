@@ -27,6 +27,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.security.PrivateKey;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class NgoFormFragment extends Fragment {
 
@@ -36,6 +39,7 @@ public class NgoFormFragment extends Fragment {
     private DatabaseReference reference;
     private FirebaseDatabase rootNode;
     private String userId;
+    private String username;
 
     public NgoFormFragment() {
         // Required empty public constructor
@@ -70,6 +74,7 @@ public class NgoFormFragment extends Fragment {
                 User userProfile = snapshot.getValue(User.class);
                 if(userProfile != null){
                     String fullname = userProfile.fullname;
+                    username = userProfile.username;
                     ngoFullName.setText(fullname);
                 }
             }
@@ -83,12 +88,12 @@ public class NgoFormFragment extends Fragment {
         btnSubmitNgo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitForm();
+                submitForm(username);
             }
         });
     }
 
-    private void submitForm() {
+    private void submitForm(String username) {
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Sumbangan");
 
@@ -97,12 +102,17 @@ public class NgoFormFragment extends Fragment {
         String nric = ngoNRIC.getText().toString();
         String address = ngoAddress.getText().toString();
         String aidDescription = ngoAidDescription.getText().toString();
+        String status = "Processing";
         userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        String currentDate = formatter.format(date);
 
         Boolean validation = checkValidation(fullname,phoneNum,nric,address,aidDescription);
 
         if(validation){
-            NgoForm ngoForm = new NgoForm(fullname, phoneNum, nric, address, aidDescription, userId);
+            NgoForm ngoForm = new NgoForm(fullname, phoneNum, nric, address, aidDescription, userId, status, currentDate, username);
             reference.push().setValue(ngoForm);
             FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId).push().setValue(ngoForm);
 
