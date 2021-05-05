@@ -8,6 +8,18 @@
     android:padding="20dp"
     tools:context=".View.LoginActivity">
 
+    <ProgressBar
+        android:id="@+id/loginProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
     <ImageView
         android:id="@+id/loginLogo"
         android:layout_width="385dp"
@@ -84,8 +96,8 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBody1"
-            android:text="Forgot password?" />
+            android:text="Forgot password?"
+            android:textAppearance="?attr/textAppearanceBody1" />
 
     </LinearLayout>
 

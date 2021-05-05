@@ -9,6 +9,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.covidgofyp.Model.User;
@@ -33,12 +34,14 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference dbReference;
     private String userID;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        progressBar = findViewById(R.id.loginProgressBar);
         btnLogin = findViewById(R.id.btnLogin);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
         btnForgotPassword = findViewById(R.id.btnForgotPassword);
@@ -88,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             etPassword.requestFocus();
             return;
         }
-
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -114,15 +117,18 @@ public class LoginActivity extends AppCompatActivity {
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
+                                progressBar.setVisibility(View.GONE);
                                 Toast.makeText(LoginActivity.this, "Something went wrong: "+error, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }else{
+                        progressBar.setVisibility(View.GONE);
                         user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Check your email to verify your account", Toast.LENGTH_LONG).show();
                     }
 
                 }else {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(LoginActivity.this, "Login failed, please check your credentials", Toast.LENGTH_SHORT).show();
                 }
 

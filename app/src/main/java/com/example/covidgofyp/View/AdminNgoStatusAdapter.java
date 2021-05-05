@@ -1,13 +1,19 @@
 package com.example.covidgofyp.View;
 
 import android.content.Context;
+import android.os.Build;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.covidgofyp.Model.NgoForm;
@@ -54,6 +60,20 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
             holder.imgNgoStatus.setImageResource(R.drawable.declined);
         }
 
+        holder.details.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                if(holder.hiddenView.getVisibility() == View.VISIBLE){
+                    TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
+                    holder.hiddenView.setVisibility(View.GONE);
+                }else {
+                    TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
+                    holder.hiddenView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -63,7 +83,10 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView ngoAdminStatusDate, ngoAdminStatusFullname, ngoAdminStatusPhoneNum, ngoAdminStatusNric, ngoAdminStatusAddress, ngoAdminStatusDescription, ngoAdminStatus, ngoAdminStatusUsername;
+        TextView details;
         ImageView imgNgoStatus;
+        LinearLayout hiddenView;
+        CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ngoAdminStatusDate = itemView.findViewById(R.id.ngoAdminStatusDate);
@@ -75,6 +98,9 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
             ngoAdminStatus = itemView.findViewById(R.id.ngoAdminStatus);
             ngoAdminStatusUsername = itemView.findViewById(R.id.ngoAdminStatusUsername);
             imgNgoStatus = itemView.findViewById(R.id.imgAdminNgoStatus);
+            hiddenView = itemView.findViewById(R.id.ngoStatusHiddenView);
+            cardView = itemView.findViewById(R.id.cvAdminNgoStatus);
+            details = itemView.findViewById(R.id.ngoAdminStatusDetails);
         }
     }
 }
