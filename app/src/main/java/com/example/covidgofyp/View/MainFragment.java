@@ -1,5 +1,7 @@
 package com.example.covidgofyp.View;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +60,7 @@ public class MainFragment extends Fragment  {
     private String totalCases, activeCases, totalRecovered, totalDeaths, newCases, newRecovered, newDeaths, critical;
     private String globalTotal, globalActive, globalRecovered, globalDeaths;
     private CombinedChart chart;
+    private ImageButton btnSignOut;
    // private Fragment newsFragment = new NewsFragment();
 
     public MainFragment() {
@@ -81,7 +87,7 @@ public class MainFragment extends Fragment  {
         chart = view.findViewById(R.id.chart);
         chipStats = view.findViewById(R.id.chipStats);
         chipNews = view.findViewById(R.id.chipNews);
-
+        btnSignOut = view.findViewById(R.id.btnSignOut);
         return view;
     }
 
@@ -150,6 +156,7 @@ public class MainFragment extends Fragment  {
                 }else {
                     tvNewDeaths.setVisibility(View.GONE);
                 }
+
                 tvCritical.setText(critical);
             }
         });
@@ -217,8 +224,34 @@ public class MainFragment extends Fragment  {
                 chart.setExtraOffsets(5,20,5,0);
                 chart.animateY(2000);
                 chart.invalidate();
-
             }
         });
+
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayDialog();
+            }
+        });
+    }
+
+    private void displayDialog() {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext());
+        builder.setTitle("Sign Out")
+                .setBackground(getResources().getDrawable(R.drawable.dialog_background))
+                .setMessage("Are you sure?")
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getContext(), LoginActivity.class));
+                    }
+                }).show();
     }
 }

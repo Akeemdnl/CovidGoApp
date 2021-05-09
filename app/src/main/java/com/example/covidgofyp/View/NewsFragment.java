@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -49,6 +50,7 @@ public class NewsFragment extends Fragment {
     private Chip chipStats, chipNews;
     private List<Articles> articlesList;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -63,6 +65,8 @@ public class NewsFragment extends Fragment {
         chipNews = view.findViewById(R.id.nchipNews);
         chipStats = view.findViewById(R.id.nchipStats);
         recyclerView = view.findViewById(R.id.rvNews);
+        progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         chipNews.setChecked(true);
         chipStats.setChecked(false);
         return view;
@@ -131,6 +135,7 @@ public class NewsFragment extends Fragment {
         ItemDecorator decorator = new ItemDecorator(30);
         recyclerView.addItemDecoration(decorator);
         recyclerView.setAdapter(adapter);
+        progressBar.setVisibility(View.GONE);
     }
 
 }

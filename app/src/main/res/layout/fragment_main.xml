@@ -8,6 +8,20 @@
     android:padding="10dp"
     tools:context=".View.MainFragment">
 
+        <ImageButton
+            android:id="@+id/btnSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/signout"
+            android:layout_marginRight="20dp" />
+
         <LinearLayout
             android:id="@+id/chipsLayout"
             android:layout_width="match_parent"
@@ -49,7 +63,7 @@
             android:fillViewport="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chipsLayout"
-            tools:layout_editor_absoluteX="16dp">
+            tools:layout_editor_absoluteX="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,21 +99,21 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Total Cases:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvTotalCases"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="?attr/textAppearanceBody1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                         <TextView
                                             android:id="@+id/tvNewCases"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="NewCaseNum"
-                                            android:textAppearance="?attr/textAppearanceBody2" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
@@ -123,14 +137,14 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Active Cases:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvActiveCases"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
@@ -153,21 +167,21 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Total Recovered:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvTotalRecovered"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                         <TextView
                                             android:id="@+id/tvNewRecovered"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="NewRecoveredNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
@@ -191,21 +205,21 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Total Deaths:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvTotalDeaths"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                         <TextView
                                             android:id="@+id/tvNewDeaths"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="NewDeathsdNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
@@ -228,14 +242,14 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="ICU:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvCritical"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                 </LinearLayout>
 
@@ -267,53 +281,56 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Total Cases:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvGlobalTotal"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6"
+                                            android:layout_marginBottom="8dp"/>
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Active Cases:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvGlobalActive"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6"
+                                            android:layout_marginBottom="8dp"/>
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Recovered:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvGlobalReovered"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6"
+                                            android:layout_marginBottom="8dp"/>
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Deaths:"
-                                            android:textAppearance="?attr/textAppearanceHeadline6" />
+                                            android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
                                             android:id="@+id/tvGlobalDeaths"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
-                                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+                                            android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                 </LinearLayout>
 
@@ -336,7 +353,7 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="520dp"
+                                    android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:orientation="vertical"
                                     android:padding="10dp">
@@ -344,7 +361,7 @@
                                         <com.github.mikephil.charting.charts.CombinedChart
                                             android:id="@+id/chart"
                                             android:layout_width="match_parent"
-                                            android:layout_height="match_parent" />
+                                            android:layout_height="520dp" />
                                 </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
