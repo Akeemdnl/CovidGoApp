@@ -1,6 +1,5 @@
 package com.example.covidgofyp.View;
 
-import android.content.Context;
 import android.os.Build;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -18,38 +17,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.covidgofyp.Model.NgoForm;
 import com.example.covidgofyp.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-import java.util.List;
+public class NgoStatusAdapter extends FirebaseRecyclerAdapter<NgoForm, NgoStatusAdapter.MyViewHolder> {
 
-public class NgoStatusAdapter extends RecyclerView.Adapter<NgoStatusAdapter.MyViewHolder> {
-
-    private Context context;
-    private List<NgoForm> ngoFormList;
-
-    public NgoStatusAdapter(Context context, List<NgoForm> ngoFormList) {
-        this.context = context;
-        this.ngoFormList = ngoFormList;
-    }
-
-    @NonNull
-    @Override
-    public NgoStatusAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.ngostatus_item, parent, false);
-        return new MyViewHolder(view);
+    public NgoStatusAdapter(@NonNull FirebaseRecyclerOptions<NgoForm> options) {
+        super(options);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NgoStatusAdapter.MyViewHolder holder, int position) {
-        holder.ngoStatusDate.setText(ngoFormList.get(position).getDate());
-        holder.ngoStatusFullname.setText(ngoFormList.get(position).getFullname());
-        holder.ngoStatusPhoneNume.setText(ngoFormList.get(position).getPhoneNum());
-        holder.ngoStatusNric.setText(ngoFormList.get(position).getNric());
-        holder.ngoStatusAddress.setText(ngoFormList.get(position).getAddress());
-        holder.ngoStatusDescription.setText(ngoFormList.get(position).getAidDescription());
-        holder.ngoStatus.setText(ngoFormList.get(position).getStatus());
-        String status = ngoFormList.get(position).getStatus();
+    protected void onBindViewHolder(@NonNull NgoStatusAdapter.MyViewHolder holder, int position, @NonNull NgoForm model) {
+        holder.ngoStatusDate.setText(model.getDate());
+        holder.ngoStatusFullname.setText(model.getFullname());
+        holder.ngoStatusPhoneNume.setText(model.getPhoneNum());
+        holder.ngoStatusNric.setText(model.getNric());
+        holder.ngoStatusAddress.setText(model.getAddress());
+        holder.ngoStatusDescription.setText(model.getAidDescription());
+        String status = model.getStatus();
+        holder.ngoStatus.setText(status);
+
 
         if(status.equals("Processing")){
             holder.imgNgoStatus.setImageResource(R.drawable.processing);
@@ -74,12 +61,14 @@ public class NgoStatusAdapter extends RecyclerView.Adapter<NgoStatusAdapter.MyVi
         });
     }
 
+    @NonNull
     @Override
-    public int getItemCount() {
-        return ngoFormList.size();
+    public NgoStatusAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ngostatus_item,parent,false);
+        return new MyViewHolder(view);
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView ngoStatusDate, ngoStatusFullname, ngoStatusPhoneNume, ngoStatusNric, ngoStatusAddress, ngoStatusDescription, ngoStatus;
         TextView details;
         ImageView imgNgoStatus;

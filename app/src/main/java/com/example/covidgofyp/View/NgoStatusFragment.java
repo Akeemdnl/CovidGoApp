@@ -11,17 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.covidgofyp.Model.NgoForm;
 import com.example.covidgofyp.R;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +31,7 @@ public class NgoStatusFragment extends Fragment {
     String userId;
     List<NgoForm> ngoFormList = new ArrayList<>();
     RecyclerView recyclerView;
+    NgoStatusAdapter adapter;
     public NgoStatusFragment() {
         // Required empty public constructor
     }
@@ -50,34 +48,31 @@ public class NgoStatusFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Sumbangan");
-        userId = user.getUid();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        reference.child(userId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    NgoForm ngoForm = dataSnapshot.getValue(NgoForm.class);
-                    if (ngoForm != null){
-                        ngoFormList.add(ngoForm);
-                    }
-                }
-                putDataInRecyclerView(ngoFormList);
-            }
+        reference = FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId);
+        FirebaseRecyclerOptions<NgoForm> options =
+                new FirebaseRecyclerOptions.Builder<NgoForm>()
+                .setQuery(reference, NgoForm.class)
+                .build();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Something went wrong: "+error, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void putDataInRecyclerView(List<NgoForm> ngoFormList) {
-        NgoStatusAdapter adapter = new NgoStatusAdapter(getContext(),ngoFormList);
+        adapter = new NgoStatusAdapter(options);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ItemDecorator decorator = new ItemDecorator(30);
         recyclerView.addItemDecoration(decorator);
         recyclerView.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

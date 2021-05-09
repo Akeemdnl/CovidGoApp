@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.covidgofyp.Model.NgoForm;
 import com.example.covidgofyp.R;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +32,6 @@ public class AdminNgoApplicationFragment extends Fragment {
     FirebaseUser user;
     DatabaseReference reference;
     String userId;
-    List<NgoForm> ngoFormList = new ArrayList<>();
     RecyclerView recyclerView;
 
     public AdminNgoApplicationFragment() {
@@ -54,9 +54,10 @@ public class AdminNgoApplicationFragment extends Fragment {
         reference = FirebaseDatabase.getInstance().getReference("Sumbangan");
         userId = user.getUid();
 
-        reference.addValueEventListener(new ValueEventListener() {
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<NgoForm> ngoFormList = new ArrayList<>();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     for (DataSnapshot childSnapshot :  dataSnapshot.getChildren()){
                         NgoForm ngoForm = childSnapshot.getValue(NgoForm.class);
@@ -75,12 +76,12 @@ public class AdminNgoApplicationFragment extends Fragment {
         });
     }
 
-    private void putDataInRecyclerView(List<NgoForm> ngoFormList) {
+        private void putDataInRecyclerView(List<NgoForm> ngoFormList) {
         AdminNgoStatusAdapter adapter = new AdminNgoStatusAdapter(getContext(),ngoFormList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ItemDecorator decorator = new ItemDecorator(30);
         recyclerView.addItemDecoration(decorator);
         recyclerView.setAdapter(adapter);
-
+        adapter.notifyDataSetChanged();
     }
 }

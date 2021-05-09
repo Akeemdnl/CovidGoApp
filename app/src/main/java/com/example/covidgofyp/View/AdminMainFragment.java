@@ -1,5 +1,7 @@
 package com.example.covidgofyp.View;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +13,16 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.covidgofyp.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class AdminMainFragment extends Fragment {
     CardView cvNgoApplication, cvHealthApplication;
+    ImageButton btnSignOut;
     Fragment adminNgoApplication = new AdminNgoApplicationFragment();
     public AdminMainFragment() {
         // Required empty public constructor
@@ -29,6 +35,7 @@ public class AdminMainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_main, container, false);
         cvNgoApplication = view.findViewById(R.id.cvNgoApplication);
         cvHealthApplication = view.findViewById(R.id.cvHealthApplication);
+        btnSignOut = view.findViewById(R.id.btnSignOut);
         return view;
     }
 
@@ -42,6 +49,34 @@ public class AdminMainFragment extends Fragment {
                 getFragment(adminNgoApplication);
             }
         });
+
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayDialog();
+            }
+        });
+    }
+
+    private void displayDialog() {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext());
+        builder.setTitle("Sign Out")
+                .setBackground(getResources().getDrawable(R.drawable.dialog_background))
+                .setMessage("Are you sure?")
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getContext(), LoginActivity.class));
+                    }
+                }).show();
+
     }
 
     private void getFragment(Fragment fragment) {
