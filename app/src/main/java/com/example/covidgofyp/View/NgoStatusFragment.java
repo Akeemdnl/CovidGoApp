@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.covidgofyp.Model.NgoForm;
 import com.example.covidgofyp.R;
@@ -26,12 +27,13 @@ import java.util.List;
 
 public class NgoStatusFragment extends Fragment {
 
-    FirebaseUser user;
-    DatabaseReference reference;
-    String userId;
-    List<NgoForm> ngoFormList = new ArrayList<>();
-    RecyclerView recyclerView;
-    NgoStatusAdapter adapter;
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userId;
+    private List<NgoForm> ngoFormList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private NgoStatusAdapter adapter;
+    private ProgressBar progressBar;
     public NgoStatusFragment() {
         // Required empty public constructor
     }
@@ -42,6 +44,7 @@ public class NgoStatusFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ngo_status, container, false);
         recyclerView = view.findViewById(R.id.rvNgoStatus);
+        progressBar = view.findViewById(R.id.progressBarNgoStatus);
         return view;
     }
 
@@ -61,7 +64,7 @@ public class NgoStatusFragment extends Fragment {
         ItemDecorator decorator = new ItemDecorator(30);
         recyclerView.addItemDecoration(decorator);
         recyclerView.setAdapter(adapter);
-
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

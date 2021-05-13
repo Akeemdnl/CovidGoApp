@@ -54,6 +54,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
+                android:fontFamily="@font/nunito_sans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -69,6 +70,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
+                android:fontFamily="@font/nunito_sans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword" />
@@ -80,6 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Login"
+            android:fontFamily="@font/nunito_sans"
             android:textAppearance="?attr/textAppearanceButton"
             app:cornerRadius="20dp"
             app:elevation="30dp" />

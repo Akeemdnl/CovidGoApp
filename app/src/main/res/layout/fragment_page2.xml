@@ -11,7 +11,7 @@
         android:id="@+id/tvNgoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/nunito_sans_semibold"
         android:gravity="center_horizontal"
         android:text="Apply for help from Non Profit Organizations"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
@@ -53,6 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Apply"
+                    android:fontFamily="@font/nunito_sans_semibold"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
 
             </LinearLayout>
@@ -83,6 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Status"
+                    android:fontFamily="@font/nunito_sans_semibold"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
 
             </LinearLayout>

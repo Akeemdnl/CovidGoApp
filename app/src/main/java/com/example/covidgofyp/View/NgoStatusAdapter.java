@@ -1,5 +1,6 @@
 package com.example.covidgofyp.View;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -30,32 +31,42 @@ public class NgoStatusAdapter extends FirebaseRecyclerAdapter<NgoForm, NgoStatus
     protected void onBindViewHolder(@NonNull NgoStatusAdapter.MyViewHolder holder, int position, @NonNull NgoForm model) {
         holder.ngoStatusDate.setText(model.getDate());
         holder.ngoStatusFullname.setText(model.getFullname());
-        holder.ngoStatusPhoneNume.setText(model.getPhoneNum());
+        holder.ngoStatusPhoneNum.setText(model.getPhoneNum());
         holder.ngoStatusNric.setText(model.getNric());
         holder.ngoStatusAddress.setText(model.getAddress());
         holder.ngoStatusDescription.setText(model.getAidDescription());
         String status = model.getStatus();
-        holder.ngoStatus.setText(status);
 
-
-        if(status.equals("Processing")){
-            holder.imgNgoStatus.setImageResource(R.drawable.processing);
-        }else if (status.equals("Approved")){
-            holder.imgNgoStatus.setImageResource(R.drawable.approve);
-        }else if (status.equals("Declined")){
-            holder.imgNgoStatus.setImageResource(R.drawable.declined);
+        switch (status) {
+            case "Processing":
+                holder.imgNgoStatus.setImageResource(R.drawable.processing);
+                holder.ngoStatus.setText(status);
+                break;
+            case "Approved":
+                holder.imgNgoStatus.setImageResource(R.drawable.approve);
+                holder.ngoStatus.setText(status);
+                holder.ngoStatus.setTextColor(Color.GREEN);
+                break;
+            case "Declined":
+                holder.imgNgoStatus.setImageResource(R.drawable.declined);
+                holder.ngoStatus.setText(status);
+                holder.ngoStatus.setTextColor(Color.RED);
+                break;
         }
 
         holder.details.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
+
                 if(holder.hiddenView.getVisibility() == View.VISIBLE){
                     TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
                     holder.hiddenView.setVisibility(View.GONE);
+                    holder.details.setImageResource(R.drawable.expand_more);
                 }else {
                     TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
                     holder.hiddenView.setVisibility(View.VISIBLE);
+                    holder.details.setImageResource(R.drawable.expand_less);
                 }
             }
         });
@@ -69,16 +80,16 @@ public class NgoStatusAdapter extends FirebaseRecyclerAdapter<NgoForm, NgoStatus
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView ngoStatusDate, ngoStatusFullname, ngoStatusPhoneNume, ngoStatusNric, ngoStatusAddress, ngoStatusDescription, ngoStatus;
-        TextView details;
-        ImageView imgNgoStatus;
+        TextView ngoStatusDate, ngoStatusFullname, ngoStatusPhoneNum, ngoStatusNric, ngoStatusAddress, ngoStatusDescription, ngoStatus;
+        //TextView details;
+        ImageView imgNgoStatus, details;
         LinearLayout hiddenView;
         CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ngoStatusDate = itemView.findViewById(R.id.ngoStatusDate);
             ngoStatusFullname = itemView.findViewById(R.id.ngoStatusFullname);
-            ngoStatusPhoneNume = itemView.findViewById(R.id.ngoStatusPhoneNum);
+            ngoStatusPhoneNum = itemView.findViewById(R.id.ngoStatusPhoneNum);
             ngoStatusNric = itemView.findViewById(R.id.ngoStatusNric);
             ngoStatusAddress = itemView.findViewById(R.id.ngoStatusAddrress);
             ngoStatusDescription = itemView.findViewById(R.id.ngoStatusDescription);

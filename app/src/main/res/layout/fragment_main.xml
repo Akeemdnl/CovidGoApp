@@ -78,6 +78,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="@font/nunito_sans_semibold"
                             android:text="@string/stats_title"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
@@ -99,6 +100,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Total Cases:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -106,6 +108,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                         <TextView
@@ -113,6 +116,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="NewCaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
 
@@ -137,6 +141,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Active Cases:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -144,6 +149,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
 
@@ -167,6 +173,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Total Recovered:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -174,6 +181,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                         <TextView
@@ -181,6 +189,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="NewRecoveredNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
 
@@ -205,6 +214,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Total Deaths:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -212,6 +222,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                         <TextView
@@ -219,6 +230,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="NewDeathsdNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
 
@@ -242,6 +254,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="ICU:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -249,6 +262,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                 </LinearLayout>
@@ -261,6 +275,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:text="@string/global_title"
+                            android:fontFamily="@font/nunito_sans_semibold"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
                         <com.google.android.material.card.MaterialCardView
@@ -281,6 +296,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Total Cases:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -288,6 +304,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6"
                                             android:layout_marginBottom="8dp"/>
 
@@ -295,6 +312,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Active Cases:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -302,6 +320,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6"
                                             android:layout_marginBottom="8dp"/>
 
@@ -309,6 +328,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Recovered:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -316,6 +336,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6"
                                             android:layout_marginBottom="8dp"/>
 
@@ -323,6 +344,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="Deaths:"
+                                            android:fontFamily="@font/nunito_sans_semibold"
                                             android:textAppearance="?attr/textAppearanceHeadline5" />
 
                                         <TextView
@@ -330,6 +352,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="CaseNum"
+                                            android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
                                 </LinearLayout>
@@ -342,6 +365,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:text="Top 10 Countries"
+                            android:fontFamily="@font/nunito_sans_semibold"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
                         <com.google.android.material.card.MaterialCardView

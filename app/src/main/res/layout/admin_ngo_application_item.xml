@@ -31,6 +31,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Username"
+                    android:fontFamily="@font/nunito_sans_semibold"
                     android:layout_gravity="center"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
@@ -42,6 +43,7 @@
                     android:gravity="center"
                     android:layout_weight="1"
                     android:text="Date"
+                    android:fontFamily="@font/nunito_sans_semibold"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
                 <ImageView
@@ -50,13 +52,14 @@
                     android:layout_height="50dp"/>
             </LinearLayout>
 
-            <TextView
+            <ImageButton
                 android:id="@+id/ngoAdminStatusDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/Details"/>
+                android:backgroundTint="@color/white"
+                android:src="@drawable/expand_more"/>
 
+            <!-- Hidden View -->
             <LinearLayout
                 android:id="@+id/ngoStatusHiddenView"
                 android:layout_width="match_parent"
@@ -75,6 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Fullname: "
+                        android:fontFamily="@font/nunito_sans"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_gravity="start"/>
 
@@ -83,6 +87,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="fullname"
+                        android:fontFamily="@font/nunito_sans"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
@@ -97,6 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Phone Number: "
+                        android:fontFamily="@font/nunito_sans"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_gravity="start"/>
 
@@ -105,6 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="phoneNum"
+                        android:fontFamily="@font/nunito_sans"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
@@ -119,6 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NRIC: "
+                        android:fontFamily="@font/nunito_sans"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_gravity="start"/>
 
@@ -127,6 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="nric"
+                        android:fontFamily="@font/nunito_sans"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
@@ -141,6 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Address: "
+                        android:fontFamily="@font/nunito_sans"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_gravity="start"/>
 
@@ -149,6 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="address"
+                        android:fontFamily="@font/nunito_sans"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
@@ -163,6 +174,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Description: "
+                        android:fontFamily="@font/nunito_sans"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_gravity="start"/>
 
@@ -171,6 +183,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="description"
+                        android:fontFamily="@font/nunito_sans"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
@@ -185,6 +198,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Status: "
+                        android:fontFamily="@font/nunito_sans"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_gravity="start"/>
 
@@ -193,8 +207,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="status"
+                        android:fontFamily="@font/nunito_sans_semibold"
                         android:gravity="center"
+                        android:textStyle="bold"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnApprove"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:text="Approve"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDecline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:text="Decline"/>
                 </LinearLayout>
 
             </LinearLayout>

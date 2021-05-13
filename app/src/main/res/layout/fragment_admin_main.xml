@@ -54,8 +54,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_sans_semibold"
                     android:text="NGO Application"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -84,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Healthcare Application"
+                    android:fontFamily="@font/nunito_sans_semibold"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
 
             </LinearLayout>

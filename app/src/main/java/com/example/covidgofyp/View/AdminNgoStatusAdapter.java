@@ -67,9 +67,11 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
                 if(holder.hiddenView.getVisibility() == View.VISIBLE){
                     TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
                     holder.hiddenView.setVisibility(View.GONE);
+                    holder.details.setImageResource(R.drawable.expand_more);
                 }else {
                     TransitionManager.beginDelayedTransition(holder.cardView, new AutoTransition());
                     holder.hiddenView.setVisibility(View.VISIBLE);
+                    holder.details.setImageResource(R.drawable.expand_less);
                 }
             }
         });
@@ -83,8 +85,7 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView ngoAdminStatusDate, ngoAdminStatusFullname, ngoAdminStatusPhoneNum, ngoAdminStatusNric, ngoAdminStatusAddress, ngoAdminStatusDescription, ngoAdminStatus, ngoAdminStatusUsername;
-        TextView details;
-        ImageView imgNgoStatus;
+        ImageView imgNgoStatus, details;
         LinearLayout hiddenView;
         CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
