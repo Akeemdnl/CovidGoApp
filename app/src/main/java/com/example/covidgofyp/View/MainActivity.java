@@ -2,6 +2,7 @@ package com.example.covidgofyp.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -10,12 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.Toast;
+
 import com.example.covidgofyp.Model.User;
 import com.example.covidgofyp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference dbReference;
     private String userID;
+    private ConstraintLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btmNav = findViewById(R.id.bottom_nav);
+        layout = findViewById(R.id.mainActivityLayout);
 
         Fragment mainFragment = new MainFragment();
-        final Fragment secondFragment = new SecondFragment();
-        final Fragment thirdFragment = new ThirdFragment();
+        final Fragment secondFragment = new NgoFragment();
+        final Fragment thirdFragment = new HealthFragment();
 
         if(savedInstanceState == null) {
             getFragment(mainFragment);
@@ -101,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(MainActivity.this, "Something went wrong...", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(layout, "Something went wrong...", Snackbar.LENGTH_SHORT).show();
                     }
                 });
 

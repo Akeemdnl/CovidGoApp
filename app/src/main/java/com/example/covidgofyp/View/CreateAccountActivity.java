@@ -2,6 +2,7 @@ package com.example.covidgofyp.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.example.covidgofyp.Model.User;
 import com.example.covidgofyp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +27,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button btnCreateAcc;
     private TextInputEditText etFullname, etUsername, etEmail, etPassword, etConfirmPassword;
+    ConstraintLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
+        layout = findViewById(R.id.createAccountLayout);
 
         btnCreateAcc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,18 +78,23 @@ public class CreateAccountActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(CreateAccountActivity.this, "User has been registered successfully", Toast.LENGTH_SHORT).show();
-                                            //redirect to login, send email verification
-                                            Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
-                                            startActivity(intent);
+                                            Snackbar.make(layout, "User has been registered successfully", Snackbar.LENGTH_INDEFINITE)
+                                                    .setAction("DISMISS", new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View v) {
+                                                            //redirect to login, send email verification
+                                                            Intent intent = new Intent(CreateAccountActivity.this, LoginActivity.class);
+                                                            startActivity(intent);
+                                                        }
+                                                    }).show();
 
                                         } else {
-                                            Toast.makeText(CreateAccountActivity.this, "User registration failed", Toast.LENGTH_SHORT).show();
+                                            showSnackbar("User registration failed");
                                         }
                                     }
                                 });
                             } else {
-                                Toast.makeText(CreateAccountActivity.this, "Failed to register user", Toast.LENGTH_SHORT).show();
+                                showSnackbar("Failed to register user");
                             }
 
                         }
@@ -145,5 +154,14 @@ public class CreateAccountActivity extends AppCompatActivity {
         return true;
     }
 
+    private void showSnackbar(String message) {
+        Snackbar.make(layout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction("DISMISS", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //close snackbar
+                    }
+                }).show();
+    }
 
 }

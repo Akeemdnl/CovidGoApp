@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.covidgofyp.Model.User;
 import com.example.covidgofyp.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,11 +29,12 @@ import com.google.firebase.database.ValueEventListener;
 public class HealthFormFragment extends Fragment {
 
     private TextInputEditText healthFullname, healthPhoneNum, healthNRIC, healthAddress, healthDescription;
-    Button btnsubmitHealth;
-    FirebaseUser user;
-    DatabaseReference reference;
+    private Button btnsubmitHealth;
+    private FirebaseUser user;
+    private DatabaseReference reference;
     private FirebaseDatabase rootNode;
     private String userId;
+    private ConstraintLayout layout;
 
     public HealthFormFragment() {
         // Required empty public constructor
@@ -48,7 +51,7 @@ public class HealthFormFragment extends Fragment {
         healthAddress = view.findViewById(R.id.healthAddress);
         healthDescription = view.findViewById(R.id.healthDescription);
         btnsubmitHealth = view.findViewById(R.id.btnSubmitHealth);
-
+        layout = view.findViewById(R.id.healthFormLayout);
         return view;
     }
 
@@ -72,7 +75,7 @@ public class HealthFormFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Database Error retrieving information", Toast.LENGTH_SHORT).show();
+                showSnackbar("Database Error retrieving information");
             }
         });
 
@@ -87,5 +90,15 @@ public class HealthFormFragment extends Fragment {
 
     private void submitForm() {
 
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(layout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction("DISMISS", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //close snackbar
+                    }
+                }).show();
     }
 }

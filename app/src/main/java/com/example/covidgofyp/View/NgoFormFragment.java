@@ -1,10 +1,10 @@
 package com.example.covidgofyp.View;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -12,11 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.covidgofyp.Model.NgoForm;
 import com.example.covidgofyp.Model.User;
 import com.example.covidgofyp.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.security.PrivateKey;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -40,6 +39,7 @@ public class NgoFormFragment extends Fragment {
     private FirebaseDatabase rootNode;
     private String userId;
     private String username;
+    private ConstraintLayout layout;
 
     public NgoFormFragment() {
         // Required empty public constructor
@@ -56,6 +56,7 @@ public class NgoFormFragment extends Fragment {
         ngoAddress = view.findViewById(R.id.ngoAddress);
         ngoAidDescription = view.findViewById(R.id.ngoAidDescription);
         btnSubmitNgo = view.findViewById(R.id.btnSubmitNgo);
+        layout = view.findViewById(R.id.ngoFormLayout);
         return view;
     }
 
@@ -81,7 +82,8 @@ public class NgoFormFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Database Error", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Database Error", Toast.LENGTH_SHORT).show();
+                showSnackbar("Database Error");
             }
         });
 
@@ -116,8 +118,9 @@ public class NgoFormFragment extends Fragment {
             reference.push().setValue(ngoForm);
             FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId).push().setValue(ngoForm);
 
-            Toast.makeText(getContext(), "Your form has been sent for verification", Toast.LENGTH_SHORT).show();
-            Fragment secondFragment = new SecondFragment();
+            //Toast.makeText(getContext(), "Your form has been sent for verification", Toast.LENGTH_SHORT).show();
+            showSnackbar("Your form has been sent for verification");
+            Fragment secondFragment = new NgoFragment();
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
@@ -156,5 +159,15 @@ public class NgoFormFragment extends Fragment {
             return false;
         }
         return true;
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(layout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction("DISMISS", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //close snackbar
+                    }
+                }).show();
     }
 }

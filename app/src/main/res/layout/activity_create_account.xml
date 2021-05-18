@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
-    tools:context=".View.CreateAccountActivity">
+    tools:context=".View.CreateAccountActivity"
+    android:id="@+id/createAccountLayout">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textCreateAcount"

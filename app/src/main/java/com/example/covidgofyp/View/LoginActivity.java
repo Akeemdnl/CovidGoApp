@@ -2,6 +2,8 @@ package com.example.covidgofyp.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import com.example.covidgofyp.R;
 import com.example.covidgofyp.ViewModel.MainViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,11 +38,13 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference dbReference;
     private String userID;
     private ProgressBar progressBar;
+    private ConstraintLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        layout = findViewById(R.id.loginActivityLayout);
         progressBar = findViewById(R.id.loginProgressBar);
         btnLogin = findViewById(R.id.btnLogin);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
@@ -117,21 +122,31 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
                                 progressBar.setVisibility(View.GONE);
-                                Toast.makeText(LoginActivity.this, "Something went wrong: "+error, Toast.LENGTH_SHORT).show();
+                                showSnackbar("Something went wrong: "+error);
                             }
                         });
                     }else{
                         progressBar.setVisibility(View.GONE);
                         user.sendEmailVerification();
-                        Toast.makeText(LoginActivity.this, "Check your email to verify your account", Toast.LENGTH_LONG).show();
+                        showSnackbar("Check your email to verify your account");
                     }
 
                 }else {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(LoginActivity.this, "Login failed, please check your credentials", Toast.LENGTH_SHORT).show();
+                    showSnackbar("Login failed, please check your credentials");
                 }
 
             }
         });
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(layout, message, Snackbar.LENGTH_INDEFINITE)
+                .setAction("DISMISS", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //close snackbar
+                    }
+                }).show();
     }
 }

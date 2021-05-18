@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.covidgofyp.Model.NgoForm;
 import com.example.covidgofyp.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +35,7 @@ public class AdminNgoApplicationFragment extends Fragment {
     DatabaseReference reference;
     String userId;
     RecyclerView recyclerView;
+    ConstraintLayout layout;
 
     public AdminNgoApplicationFragment() {
         // Required empty public constructor
@@ -44,6 +47,7 @@ public class AdminNgoApplicationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_admin_ngo_application, container, false);
         recyclerView = view.findViewById(R.id.rvNgoApplication);
+        layout = view.findViewById(R.id.adminNgoApplicationLayout);
         return view;
     }
 
@@ -71,7 +75,8 @@ public class AdminNgoApplicationFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Something went wrong: "+error, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Something went wrong: "+error, Toast.LENGTH_SHORT).show();
+                Snackbar.make(layout,"Something went wrong: "+error, Snackbar.LENGTH_LONG).show();
             }
         });
     }

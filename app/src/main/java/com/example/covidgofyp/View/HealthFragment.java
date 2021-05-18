@@ -13,12 +13,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.covidgofyp.R;
 
-public class ThirdFragment extends Fragment {
+public class HealthFragment extends Fragment {
 
     private CardView cvApplyHealth, cvStatusHealth;
     private Fragment healthFormFragment = new HealthFormFragment();
     private Fragment healthStatusFragment = new HealthStatusFragment();
-    public ThirdFragment() {
+    public HealthFragment() {
         //Required empty constructor
     }
 

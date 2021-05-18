@@ -22,14 +22,14 @@ import com.example.covidgofyp.ViewModel.MainViewModel;
 
 import java.util.List;
 
-public class SecondFragment extends Fragment {
+public class NgoFragment extends Fragment {
 
     CardView cvApplyNgo, cvStatusNgo;
     Fragment ngoFormFragment = new NgoFormFragment();
     Fragment ngoStatusFragment = new NgoStatusFragment();
 
     //Required empty constructor
-    public SecondFragment() {
+    public NgoFragment() {
 
     }
 

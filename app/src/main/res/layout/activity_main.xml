@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
-    tools:context=".View.MainActivity">
+    tools:context=".View.MainActivity"
+    android:id="@+id/mainActivityLayout">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
