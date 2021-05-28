@@ -31,11 +31,11 @@ import java.util.List;
 
 public class AdminNgoApplicationFragment extends Fragment {
 
-    FirebaseUser user;
-    DatabaseReference reference;
-    String userId;
-    RecyclerView recyclerView;
-    ConstraintLayout layout;
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userId;
+    private RecyclerView recyclerView;
+    private ConstraintLayout layout;
 
     public AdminNgoApplicationFragment() {
         // Required empty public constructor

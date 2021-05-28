@@ -111,12 +111,17 @@ public class LoginActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 User userProfile = snapshot.getValue(User.class);
                                 String type = userProfile.type;
+                                String status = userProfile.status;
 
                                 if(type.equals("admin")){
                                     startActivity(new Intent(LoginActivity.this, AdminActivity.class));
-                                }else{
+                                }else if(status.equals("Disabled")){
+                                    showSnackbar("Unable to login. Your Account is disabled");
+                                    progressBar.setVisibility(View.GONE);
+                                }else {
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 }
+
                             }
 
                             @Override

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_main"
     android:padding="10dp"
-    tools:context=".View.MainFragment">
+    tools:context=".View.CovidFragment">
 
         <ImageButton
             android:id="@+id/btnSignOut"

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btmNav = findViewById(R.id.bottom_nav);
         layout = findViewById(R.id.mainActivityLayout);
 
-        Fragment mainFragment = new MainFragment();
+        Fragment mainFragment = new CovidFragment();
         final Fragment secondFragment = new NgoFragment();
         final Fragment thirdFragment = new HealthFragment();
 

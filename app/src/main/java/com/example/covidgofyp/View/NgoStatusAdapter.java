@@ -53,7 +53,7 @@ public class NgoStatusAdapter extends FirebaseRecyclerAdapter<NgoForm, NgoStatus
                 holder.ngoStatus.setTextColor(Color.RED);
                 break;
         }
-
+        
         holder.details.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override

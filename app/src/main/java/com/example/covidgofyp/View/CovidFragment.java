@@ -15,14 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.covidgofyp.Model.CovidData;
 import com.example.covidgofyp.Model.CovidGlobalData;
 import com.example.covidgofyp.Model.TopCountriesData;
 import com.example.covidgofyp.R;
 import com.example.covidgofyp.ViewModel.MainViewModel;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
@@ -34,16 +32,14 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class MainFragment extends Fragment  {
+public class CovidFragment extends Fragment  {
     private TextView tvTotalCases,
             tvActiveCases,
             tvTotalRecovered,
@@ -61,9 +57,8 @@ public class MainFragment extends Fragment  {
     private String globalTotal, globalActive, globalRecovered, globalDeaths;
     private CombinedChart chart;
     private ImageButton btnSignOut;
-   // private Fragment newsFragment = new NewsFragment();
 
-    public MainFragment() {
+    public CovidFragment() {
         // Required empty public constructor
     }
 
@@ -71,7 +66,7 @@ public class MainFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_covid, container, false);
         tvTotalCases = view.findViewById(R.id.tvTotalCases);
         tvActiveCases = view.findViewById(R.id.tvActiveCases);
         tvTotalRecovered = view.findViewById(R.id.tvTotalRecovered);

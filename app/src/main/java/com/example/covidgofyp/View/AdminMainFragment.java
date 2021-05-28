@@ -21,9 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class AdminMainFragment extends Fragment {
-    CardView cvNgoApplication, cvHealthApplication;
+    CardView cvNgoApplication, cvHealthApplication, cvUsers;
     ImageButton btnSignOut;
     Fragment adminNgoApplication = new AdminNgoApplicationFragment();
+    Fragment adminUsers = new AdminUserFragment();
     public AdminMainFragment() {
         // Required empty public constructor
     }
@@ -35,6 +36,7 @@ public class AdminMainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_main, container, false);
         cvNgoApplication = view.findViewById(R.id.cvNgoApplication);
         cvHealthApplication = view.findViewById(R.id.cvHealthApplication);
+        cvUsers = view.findViewById(R.id.cvUsers);
         btnSignOut = view.findViewById(R.id.btnSignOut);
         return view;
     }
@@ -47,6 +49,13 @@ public class AdminMainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getFragment(adminNgoApplication);
+            }
+        });
+
+        cvUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragment(adminUsers);
             }
         });
 

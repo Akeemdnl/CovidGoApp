@@ -1,13 +1,11 @@
 package com.example.covidgofyp.View;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,27 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.covidgofyp.Model.Articles;
-import com.example.covidgofyp.Model.CovidData;
 import com.example.covidgofyp.Model.NewsData;
 import com.example.covidgofyp.R;
-import com.example.covidgofyp.Repositories.MySingleton;
 import com.google.android.material.chip.Chip;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsFragment extends Fragment {
 
-    private Fragment mainFragment = new MainFragment();
+    private Fragment mainFragment = new CovidFragment();
     private Chip chipStats, chipNews;
     private List<Articles> articlesList;
     private RecyclerView recyclerView;

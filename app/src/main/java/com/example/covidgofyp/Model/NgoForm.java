@@ -1,11 +1,11 @@
 package com.example.covidgofyp.Model;
 
 public class NgoForm {
-    public String fullname, phoneNum, nric, address, aidDescription, userId, status, date, username;
+    public String fullname, phoneNum, nric, address, aidDescription, userId, status, date, username, key;
 
     public NgoForm(){}
 
-    public NgoForm(String fullname, String phoneNum, String nric, String address, String aidDescription, String userId, String status, String date, String username) {
+    public NgoForm(String fullname, String phoneNum, String nric, String address, String aidDescription, String userId, String status, String date, String username, String key) {
         this.fullname = fullname;
         this.phoneNum = phoneNum;
         this.nric = nric;
@@ -15,6 +15,7 @@ public class NgoForm {
         this.status = status;
         this.date = date;
         this.username = username;
+        this.key = key;
     }
 
     public String getFullname() {
@@ -87,5 +88,13 @@ public class NgoForm {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

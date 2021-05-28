@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ngoApplicationLayout">
+    android:id="@+id/adminUsersLayout">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvAdminNgoStatus"
+        android:id="@+id/cvAdminUsers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:contentPadding="8dp"
@@ -17,17 +17,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            android:layout_gravity="center">
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/ngoAdminStatusUsername"
+                    android:id="@+id/adminUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -36,25 +36,20 @@
                     android:layout_gravity="center"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
 
-                <TextView
-                    android:id="@+id/ngoAdminStatusDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:text="Date"
-                    android:fontFamily="@font/nunito_sans_semibold"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
-
-                <ImageView
-                    android:id="@+id/imgAdminNgoStatus"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/ngoAdminStatusDate"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Date"-->
+<!--                    android:fontFamily="@font/nunito_sans_semibold"-->
+<!--                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>-->
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/ngoAdminStatusDetails"
+                android:id="@+id/adminUsersDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
@@ -62,7 +57,7 @@
 
             <!-- Hidden View -->
             <LinearLayout
-                android:id="@+id/ngoStatusHiddenView"
+                android:id="@+id/adminUserHiddenView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -84,7 +79,7 @@
                         android:layout_gravity="start"/>
 
                     <TextView
-                        android:id="@+id/ngoAdminUserId"
+                        android:id="@+id/adminUserId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="userid"
@@ -93,29 +88,6 @@
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Key: "
-                        android:fontFamily="@font/nunito_sans"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                        android:layout_gravity="start"/>
-
-                    <TextView
-                        android:id="@+id/ngoAdminUserKey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="key"
-                        android:fontFamily="@font/nunito_sans"
-                        android:gravity="center"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -132,7 +104,7 @@
                         android:layout_gravity="start"/>
 
                     <TextView
-                        android:id="@+id/ngoAdminStatusFullname"
+                        android:id="@+id/adminUserFullname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="fullname"
@@ -150,16 +122,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Phone Number: "
+                        android:text="Email: "
                         android:fontFamily="@font/nunito_sans"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_gravity="start"/>
 
                     <TextView
-                        android:id="@+id/ngoAdminStatusPhoneNum"
+                        android:id="@+id/adminUserEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="phoneNum"
+                        android:text="email"
                         android:fontFamily="@font/nunito_sans"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
@@ -174,64 +146,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NRIC: "
+                        android:text="Type: "
                         android:fontFamily="@font/nunito_sans"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_gravity="start"/>
 
                     <TextView
-                        android:id="@+id/ngoAdminStatusNric"
+                        android:id="@+id/adminUserType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="nric"
-                        android:fontFamily="@font/nunito_sans"
-                        android:gravity="center"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Address: "
-                        android:fontFamily="@font/nunito_sans"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                        android:layout_gravity="start"/>
-
-                    <TextView
-                        android:id="@+id/ngoAdminStatusAddress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="address"
-                        android:fontFamily="@font/nunito_sans"
-                        android:gravity="center"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Description: "
-                        android:fontFamily="@font/nunito_sans"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                        android:layout_gravity="start"/>
-
-                    <TextView
-                        android:id="@+id/ngoAdminStatusDescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="description"
+                        android:text="type"
                         android:fontFamily="@font/nunito_sans"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
@@ -252,7 +176,7 @@
                         android:layout_gravity="start"/>
 
                     <TextView
-                        android:id="@+id/ngoAdminStatus"
+                        android:id="@+id/adminUserStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="status"
@@ -268,26 +192,26 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnApprove"
+                        android:id="@+id/btnDisable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:text="Approve"/>
+                        android:text="Disable"/>
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnDecline"
+                        android:id="@+id/btnActivate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:text="Decline"/>
+                        android:text="Activate"
+                        android:visibility="gone"/>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnDelete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:text="Delete"
-                        android:visibility="gone"/>
+                        android:text="Delete"/>
                 </LinearLayout>
 
             </LinearLayout>

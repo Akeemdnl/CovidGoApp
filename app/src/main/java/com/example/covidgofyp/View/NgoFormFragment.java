@@ -114,9 +114,12 @@ public class NgoFormFragment extends Fragment {
         Boolean validation = checkValidation(fullname,phoneNum,nric,address,aidDescription);
 
         if(validation){
-            NgoForm ngoForm = new NgoForm(fullname, phoneNum, nric, address, aidDescription, userId, status, currentDate, username);
-            reference.push().setValue(ngoForm);
-            FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId).push().setValue(ngoForm);
+            // reference.push().setValue(ngoForm);
+            //Improve Key Retreival!!
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId);
+            String key = ref.push().getKey();
+            NgoForm ngoForm = new NgoForm(fullname, phoneNum, nric, address, aidDescription, userId, status, currentDate, username, key);
+            ref.child(key).setValue(ngoForm);
 
             //Toast.makeText(getContext(), "Your form has been sent for verification", Toast.LENGTH_SHORT).show();
             showSnackbar("Your form has been sent for verification");
