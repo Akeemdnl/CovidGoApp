@@ -27,6 +27,7 @@ public class HealthFragment extends Fragment {
     private CardView cvApplyHealth, cvStatusHealth;
     private Fragment healthFormFragment = new HealthFormFragment();
     private Fragment healthStatusFragment = new HealthStatusFragment();
+    private Fragment healthFormFragmentNew = new HealthFormFragmentNew();
     private TextView title;
     private FirebaseAuth mAuth;
     private DatabaseReference dbReference;
@@ -64,6 +65,7 @@ public class HealthFragment extends Fragment {
                 String username = userProfile.username;
                 if(username != null) {
                     title.setText("Hi " + username + ", here you can apply for help from healthcare");
+                    title.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -79,7 +81,7 @@ public class HealthFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
                         .setReorderingAllowed(true)
-                        .replace(R.id.container, healthFormFragment,null )
+                        .replace(R.id.container, healthFormFragmentNew,null )
                         .addToBackStack(null)
                         .commit();
             }

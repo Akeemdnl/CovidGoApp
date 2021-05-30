@@ -46,11 +46,11 @@ public class HealthFormFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_health_form, container, false);
         healthFullname = view.findViewById(R.id.healthFullname);
-        healthPhoneNum = view.findViewById(R.id.healthPhoneNum);
-        healthNRIC = view.findViewById(R.id.healthNRIC);
-        healthAddress = view.findViewById(R.id.healthAddress);
-        healthDescription = view.findViewById(R.id.healthDescription);
-        btnsubmitHealth = view.findViewById(R.id.btnSubmitHealth);
+//        healthPhoneNum = view.findViewById(R.id.healthPhoneNum);
+//        healthNRIC = view.findViewById(R.id.healthNRIC);
+//        healthAddress = view.findViewById(R.id.healthAddress);
+//        healthDescription = view.findViewById(R.id.healthDescription);
+//        btnsubmitHealth = view.findViewById(R.id.btnSubmitHealth);
         layout = view.findViewById(R.id.healthFormLayout);
         return view;
     }

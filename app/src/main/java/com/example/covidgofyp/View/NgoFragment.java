@@ -69,6 +69,7 @@ public class NgoFragment extends Fragment {
                 String username = userProfile.username;
                 if(username != null) {
                     title.setText("Hi " + username + ", here you can apply for help from non profit organizations");
+                    title.setVisibility(View.VISIBLE);
                 }
             }
 

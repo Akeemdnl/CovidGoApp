@@ -54,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Apply"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nunito_sans_semibold"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
 
@@ -65,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp">
@@ -79,6 +81,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="250dp"
                     android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/status"/>
 
                 <TextView
