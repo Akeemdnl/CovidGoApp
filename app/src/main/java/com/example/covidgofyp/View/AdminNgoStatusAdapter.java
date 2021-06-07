@@ -36,7 +36,6 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
 
     Context context;
     List<NgoForm> ngoFormList;
-    Fragment fragment;
 
     public AdminNgoStatusAdapter(Context context, List<NgoForm> ngoFormList) {
         this.context = context;
@@ -54,6 +53,7 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         holder.ngoAdminStatusDate.setText(ngoFormList.get(position).getDate());
         holder.ngoAdminStatusFullname.setText(ngoFormList.get(position).getFullname());
         holder.ngoAdminStatusPhoneNum.setText(ngoFormList.get(position).getPhoneNum());
@@ -62,12 +62,10 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
         holder.ngoAdminStatusDescription.setText(ngoFormList.get(position).getAidDescription());
         holder.ngoAdminStatus.setText(ngoFormList.get(position).getStatus());
         holder.ngoAdminStatusUsername.setText(ngoFormList.get(position).getUsername());
-        holder.ngoAdminUserId.setText(ngoFormList.get(position).getUserId());
-        holder.key.setText(ngoFormList.get(position).getKey());
         String status = ngoFormList.get(position).getStatus();
 
         if(status.equals("Processing")){
-            holder.imgNgoStatus.setImageResource(R.drawable.processing);
+            holder.imgNgoStatus.setImageResource(R.drawable.hourglass);
         }else if (status.equals("Approved")){
             holder.imgNgoStatus.setImageResource(R.drawable.approve);
             holder.btnApprove.setVisibility(View.GONE);
@@ -114,22 +112,15 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
                             public void onClick(DialogInterface dialog, int which) {
                                 String userId = ngoFormList.get(position).getUserId();
                                 String key = ngoFormList.get(position).getKey();
-                                System.out.println(userId);
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId).child(key);
                                 ref.child("status").setValue("Approved");
-                                //FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId).child(key).child("status").setValue("Approved");
+                                ngoFormList.get(position).setStatus("Approved");
+                                notifyItemChanged(position);
                                 Snackbar.make(holder.layout, "Application approved", Snackbar.LENGTH_INDEFINITE)
                                         .setAction("DISMISS", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
                                                 //close snackbar
-//                                                fragment = new AdminNgoApplicationFragment();
-//                                                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                                                fragmentManager.beginTransaction()
-//                                                        .setReorderingAllowed(true)
-//                                                        .replace(R.id.containerAdmin, fragment,null )
-//                                                        .addToBackStack(null)
-//                                                        .commit();
                                             }
                                         }).show();
                             }
@@ -157,6 +148,8 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
                                 String key = ngoFormList.get(position).getKey();
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId).child(key);
                                 ref.child("status").setValue("Declined");
+                                ngoFormList.get(position).setStatus("Declined");
+                                notifyItemChanged(position);
                                 Snackbar.make(holder.layout, "Application declined", Snackbar.LENGTH_INDEFINITE)
                                         .setAction("DISMISS", new View.OnClickListener() {
                                             @Override
@@ -196,6 +189,8 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
                                 String key = ngoFormList.get(position).getKey();
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Sumbangan").child(userId);
                                 ref.child(key).removeValue();
+                                ngoFormList.remove(position);
+                                notifyItemChanged(position);
                                 Snackbar.make(holder.layout, "Application deleted", Snackbar.LENGTH_INDEFINITE)
                                         .setAction("DISMISS", new View.OnClickListener() {
                                             @Override
@@ -246,8 +241,6 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
             btnApprove = itemView.findViewById(R.id.btnApprove);
             btnDecline = itemView.findViewById(R.id.btnDecline);
             btnDelete = itemView.findViewById(R.id.btnDelete);
-            ngoAdminUserId = itemView.findViewById(R.id.ngoAdminUserId);
-            key = itemView.findViewById(R.id.ngoAdminUserKey);
             layout = itemView.findViewById(R.id.ngoApplicationLayout);
         }
     }

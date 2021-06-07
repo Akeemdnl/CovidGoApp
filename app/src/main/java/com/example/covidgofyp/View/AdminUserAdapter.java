@@ -2,6 +2,7 @@ package com.example.covidgofyp.View;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Build;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -37,8 +38,6 @@ public class AdminUserAdapter extends FirebaseRecyclerAdapter<User, AdminUserAda
      * @param options
      */
 
-    Fragment fragment;
-
     public AdminUserAdapter(@NonNull FirebaseRecyclerOptions<User> options) {
         super(options);
     }
@@ -56,6 +55,8 @@ public class AdminUserAdapter extends FirebaseRecyclerAdapter<User, AdminUserAda
         if(status.equals("Disabled")){
             holder.btnActivate.setVisibility(View.VISIBLE);
             holder.btnDisable.setVisibility(View.GONE);
+            holder.username.setTextColor(Color.RED);
+            holder.status.setTextColor(Color.RED);
         }else if (status.equals("Active")){
             holder.btnActivate.setVisibility(View.GONE);
             holder.btnDisable.setVisibility(View.VISIBLE);
@@ -101,13 +102,6 @@ public class AdminUserAdapter extends FirebaseRecyclerAdapter<User, AdminUserAda
                                             @Override
                                             public void onClick(View v) {
                                                 //close snackbar
-//                                                fragment = new AdminUserFragment();
-//                                                FragmentManager fragmentManager = ((AppCompatActivity)holder.context).getSupportFragmentManager();
-//                                                fragmentManager.beginTransaction()
-//                                                        .setReorderingAllowed(true)
-//                                                        .replace(R.id.containerAdmin, fragment,null )
-//                                                        .addToBackStack(null)
-//                                                        .commit();
                                             }
                                         }).show();
                             }
@@ -139,13 +133,6 @@ public class AdminUserAdapter extends FirebaseRecyclerAdapter<User, AdminUserAda
                                             @Override
                                             public void onClick(View v) {
                                                 //close snackbar
-//                                                fragment = new AdminUserFragment();
-//                                                FragmentManager fragmentManager = ((AppCompatActivity)holder.context).getSupportFragmentManager();
-//                                                fragmentManager.beginTransaction()
-//                                                        .setReorderingAllowed(true)
-//                                                        .replace(R.id.containerAdmin, fragment,null )
-//                                                        .addToBackStack(null)
-//                                                        .commit();
                                             }
                                         }).show();
                             }
@@ -171,6 +158,7 @@ public class AdminUserAdapter extends FirebaseRecyclerAdapter<User, AdminUserAda
                             public void onClick(DialogInterface dialog, int which) {
                                 String userId = model.userId;
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+                                //Remove user and applications
                                 ref.child(userId).removeValue();
                                 ref = FirebaseDatabase.getInstance().getReference("Sumbangan");
                                 ref.child(userId).removeValue();

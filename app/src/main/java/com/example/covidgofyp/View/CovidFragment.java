@@ -36,6 +36,7 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,9 @@ public class CovidFragment extends Fragment  {
     private String globalTotal, globalActive, globalRecovered, globalDeaths;
     private CombinedChart chart;
     private ImageButton btnSignOut;
+    private double dTotalCases, dActiveCases, dTotalRecovered, dTotalDeaths, dNewCases, dNewRecovered, dNewDeaths, dCritical;
+    private double dGlobalTotal, dGlobalActive, dGlobalRecovered, dGlobalDeaths;
+    NumberFormat numberFormat = NumberFormat.getInstance();
 
     public CovidFragment() {
         // Required empty public constructor
@@ -121,54 +125,78 @@ public class CovidFragment extends Fragment  {
         mainViewModel.getCovidData().observe(this, new Observer<CovidData>() {
             @Override
             public void onChanged(CovidData covidData) {
+                numberFormat.setGroupingUsed(true);
 
                 totalCases = covidData.getTotalCases();
-                activeCases = covidData.getActiveCases();
-                totalRecovered = covidData.getTotalRecovered();
-                totalDeaths = covidData.getTotalDeaths();
-                newCases = covidData.getNewCases();
-                newRecovered = covidData.getNewRecovered();
-                newDeaths = covidData.getNewDeaths();
-                critical = covidData.getCritical();
+                dTotalCases = Double.parseDouble(totalCases);
 
-                tvTotalCases.setText(totalCases);
-                tvActiveCases.setText(activeCases);
-                tvTotalRecovered.setText(totalRecovered);
-                tvTotalDeaths.setText(totalDeaths);
+                activeCases = covidData.getActiveCases();
+                dActiveCases = Double.parseDouble(activeCases);
+
+                totalRecovered = covidData.getTotalRecovered();
+                dTotalRecovered = Double.parseDouble(totalRecovered);
+
+                totalDeaths = covidData.getTotalDeaths();
+                dTotalDeaths = Double.parseDouble(totalDeaths);
+
+                newCases = covidData.getNewCases();
+                dNewCases = Double.parseDouble(newCases);
+
+                newRecovered = covidData.getNewRecovered();
+                dNewRecovered = Double.parseDouble(newRecovered);
+
+                newDeaths = covidData.getNewDeaths();
+                dNewDeaths = Double.parseDouble(newDeaths);
+
+                critical = covidData.getCritical();
+                dCritical = Double.parseDouble(critical);
+
+                tvTotalCases.setText(numberFormat.format(dTotalCases));
+                tvActiveCases.setText(numberFormat.format(dActiveCases));
+                tvTotalRecovered.setText(numberFormat.format(dTotalRecovered));
+                tvTotalDeaths.setText(numberFormat.format(dTotalDeaths));
 
                 if(!newCases.equals("0")){
-                    tvNewCases.setText("+"+newCases);
+                    tvNewCases.setText("+"+numberFormat.format(dNewCases));
                 }else {
                     tvNewCases.setVisibility(View.GONE);
                 }
                 if(!newRecovered.equals("0")){
-                    tvNewRecovered.setText("+"+newRecovered);
+                    tvNewRecovered.setText("+"+numberFormat.format(dNewRecovered));
                 }else {
                     tvNewRecovered.setVisibility(View.GONE);
                 }
                 if(!newDeaths.equals("0")){
-                    tvNewDeaths.setText("+"+newDeaths);
+                    tvNewDeaths.setText("+"+numberFormat.format(dNewDeaths));
                 }else {
                     tvNewDeaths.setVisibility(View.GONE);
                 }
 
-                tvCritical.setText(critical);
+                tvCritical.setText(numberFormat.format(dCritical));
             }
         });
 
         mainViewModel.getCovidGlobalData().observe(this, new Observer<CovidGlobalData>() {
             @Override
             public void onChanged(CovidGlobalData covidGlobalData) {
+                numberFormat.setGroupingUsed(true);
 
                 globalTotal = covidGlobalData.getTotalCases();
-                globalActive = covidGlobalData.getActiveCases();
-                globalRecovered = covidGlobalData.getTotalRecovered();
-                globalDeaths = covidGlobalData.getTotalDeaths();
+                dGlobalTotal = Double.parseDouble(globalTotal);
 
-                tvGlobalTotal.setText(globalTotal);
-                tvGlobalActive.setText(globalActive);
-                tvGlobalRecovered.setText(globalRecovered);
-                tvGlobalDeaths.setText(globalDeaths);
+                globalActive = covidGlobalData.getActiveCases();
+                dGlobalActive = Double.parseDouble(globalActive);
+
+                globalRecovered = covidGlobalData.getTotalRecovered();
+                dGlobalRecovered = Double.parseDouble(globalRecovered);
+
+                globalDeaths = covidGlobalData.getTotalDeaths();
+                dGlobalDeaths = Double.parseDouble(globalDeaths);
+
+                tvGlobalTotal.setText(numberFormat.format(dGlobalTotal));
+                tvGlobalActive.setText(numberFormat.format(dGlobalActive));
+                tvGlobalRecovered.setText(numberFormat.format(dGlobalRecovered));
+                tvGlobalDeaths.setText(numberFormat.format(dGlobalDeaths));
             }
         });
 

@@ -75,7 +75,6 @@ public class AdminNgoApplicationFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                //Toast.makeText(getContext(), "Something went wrong: "+error, Toast.LENGTH_SHORT).show();
                 Snackbar.make(layout,"Something went wrong: "+error, Snackbar.LENGTH_LONG).show();
             }
         });
@@ -89,4 +88,6 @@ public class AdminNgoApplicationFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
+
 }

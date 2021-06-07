@@ -39,7 +39,7 @@ public class NgoStatusAdapter extends FirebaseRecyclerAdapter<NgoForm, NgoStatus
 
         switch (status) {
             case "Processing":
-                holder.imgNgoStatus.setImageResource(R.drawable.processing);
+                holder.imgNgoStatus.setImageResource(R.drawable.hourglass);
                 holder.ngoStatus.setText(status);
                 break;
             case "Approved":
