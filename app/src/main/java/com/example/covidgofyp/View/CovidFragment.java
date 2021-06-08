@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
@@ -13,7 +14,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.AbsListView;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.covidgofyp.Model.CovidData;
@@ -60,7 +64,9 @@ public class CovidFragment extends Fragment  {
     private ImageButton btnSignOut;
     private double dTotalCases, dActiveCases, dTotalRecovered, dTotalDeaths, dNewCases, dNewRecovered, dNewDeaths, dCritical;
     private double dGlobalTotal, dGlobalActive, dGlobalRecovered, dGlobalDeaths;
-    NumberFormat numberFormat = NumberFormat.getInstance();
+    private NumberFormat numberFormat = NumberFormat.getInstance();
+    private ScrollView scrollView;
+    private CardView cvTopBar;
 
     public CovidFragment() {
         // Required empty public constructor
@@ -87,6 +93,8 @@ public class CovidFragment extends Fragment  {
         chipStats = view.findViewById(R.id.chipStats);
         chipNews = view.findViewById(R.id.chipNews);
         btnSignOut = view.findViewById(R.id.btnSignOut);
+        scrollView = view.findViewById(R.id.scrollView);
+        cvTopBar = view.findViewById(R.id.cvTopBar);
         return view;
     }
 
@@ -97,6 +105,21 @@ public class CovidFragment extends Fragment  {
         mainViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(MainViewModel.class);
         chipStats.setChecked(true);
         chipNews.setChecked(false);
+
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                float y = 0;
+                if (scrollView != null){
+                    if(scrollView.getScrollY() > y){
+                        cvTopBar.setVisibility(View.GONE);
+                    }else {
+                        cvTopBar.setVisibility(View.VISIBLE);
+                    }
+                   // y = scrollView.getScrollY();
+                }
+            }
+        });
 
         chipNews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,4 +300,5 @@ public class CovidFragment extends Fragment  {
                     }
                 }).show();
     }
+
 }
