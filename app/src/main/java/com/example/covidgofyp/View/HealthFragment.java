@@ -1,5 +1,6 @@
 package com.example.covidgofyp.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,7 +65,7 @@ public class HealthFragment extends Fragment {
                 User userProfile = snapshot.getValue(User.class);
                 String username = userProfile.username;
                 if(username != null) {
-                    title.setText("Hi " + username + ", here you can apply for help from healthcare");
+                    title.setText("Hi " + username + ", Let's make an appointment with a doctor");
                     title.setVisibility(View.VISIBLE);
                 }
             }
@@ -78,12 +79,14 @@ public class HealthFragment extends Fragment {
         cvApplyHealth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .setReorderingAllowed(true)
-                        .replace(R.id.container, healthFormFragmentNew,null )
-                        .addToBackStack(null)
-                        .commit();
+//                FragmentManager fragmentManager = getFragmentManager();
+//                fragmentManager.beginTransaction()
+//                        .setReorderingAllowed(true)
+//                        .replace(R.id.container, healthFormFragmentNew,null )
+//                        .addToBackStack(null)
+//                        .commit();
+
+                getContext().startActivity(new Intent(getContext(), AppointmentMain.class));
             }
         });
 

@@ -3,10 +3,13 @@ package com.example.covidgofyp.View;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
@@ -22,12 +25,15 @@ import android.widget.TextView;
 
 import com.example.covidgofyp.Model.CovidData;
 import com.example.covidgofyp.Model.CovidGlobalData;
+import com.example.covidgofyp.Model.TimelineData;
 import com.example.covidgofyp.Model.TopCountriesData;
 import com.example.covidgofyp.R;
 import com.example.covidgofyp.ViewModel.MainViewModel;
 import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -36,12 +42,16 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.Utils;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.sql.Time;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CovidFragment extends Fragment  {
@@ -61,6 +71,7 @@ public class CovidFragment extends Fragment  {
     private String totalCases, activeCases, totalRecovered, totalDeaths, newCases, newRecovered, newDeaths, critical;
     private String globalTotal, globalActive, globalRecovered, globalDeaths;
     private CombinedChart chart;
+    private LineChart lineChart;
     private ImageButton btnSignOut;
     private double dTotalCases, dActiveCases, dTotalRecovered, dTotalDeaths, dNewCases, dNewRecovered, dNewDeaths, dCritical;
     private double dGlobalTotal, dGlobalActive, dGlobalRecovered, dGlobalDeaths;
@@ -90,6 +101,7 @@ public class CovidFragment extends Fragment  {
         tvGlobalRecovered = view.findViewById(R.id.tvGlobalReovered);
         tvGlobalDeaths = view.findViewById(R.id.tvGlobalDeaths);
         chart = view.findViewById(R.id.chart);
+        lineChart = view.findViewById(R.id.chartTimeline);
         chipStats = view.findViewById(R.id.chipStats);
         chipNews = view.findViewById(R.id.chipNews);
         btnSignOut = view.findViewById(R.id.btnSignOut);
@@ -116,7 +128,6 @@ public class CovidFragment extends Fragment  {
                     }else {
                         cvTopBar.setVisibility(View.VISIBLE);
                     }
-                   // y = scrollView.getScrollY();
                 }
             }
         });
@@ -220,6 +231,66 @@ public class CovidFragment extends Fragment  {
                 tvGlobalActive.setText(numberFormat.format(dGlobalActive));
                 tvGlobalRecovered.setText(numberFormat.format(dGlobalRecovered));
                 tvGlobalDeaths.setText(numberFormat.format(dGlobalDeaths));
+            }
+        });
+
+        mainViewModel.getLineChartData().observe(this, new Observer<List<TimelineData>>() {
+            @Override
+            public void onChanged(List<TimelineData> timelineData) {
+                List<Entry> entries = new ArrayList<>();
+                TimelineData data;
+                ArrayList<String> date = new ArrayList<>();
+                ArrayList<Integer> test = new ArrayList<Integer>();
+                LineData lineData = new LineData();
+                for (int i = 0; i < timelineData.size(); i++){
+                    data = timelineData.get(i);
+                    date.add(data.getDate());
+                    int cases = Integer.parseInt(data.getCases());
+                    test.add(cases);
+                    entries.add(new Entry(i, cases));
+                }
+
+                LineDataSet lineDataSet = new LineDataSet(entries, "Cases");
+                lineDataSet.setColor(Color.parseColor("#7d7d7d"));
+                lineDataSet.setCircleColor(Color.RED);//Dot color
+                lineDataSet.setLineWidth(1f);//Line width
+                lineDataSet.setValueTextSize(11f);
+
+                YAxis rightAxis = lineChart.getAxisRight();
+
+                //Set the y-axis on the right of the chart to be disabled
+                rightAxis.setEnabled(false);
+                YAxis leftAxis = lineChart.getAxisLeft();
+                //Set the y-axis on the left of the chart to be disabled
+                leftAxis.setEnabled(false);
+                //Set the x axis
+                XAxis xAxis = lineChart.getXAxis();
+                xAxis.setTextColor(Color.parseColor("#333333"));
+                xAxis.setTextSize(5f);
+                xAxis.setAxisMinimum(0f);
+                xAxis.setDrawAxisLine(true);//Whether to draw the axis
+                xAxis.setDrawGridLines(false);//Set the line corresponding to each point on the x-axis
+                xAxis.setDrawLabels(true);//Draw label refers to the corresponding value on the x axis
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//Set the display position of the x axis
+                xAxis.setGranularity(1f);//X-axis label redrawing is prohibited after zooming in
+                xAxis.setValueFormatter(new IndexAxisValueFormatter(date));
+                xAxis.setLabelRotationAngle(270);
+                xAxis.setLabelCount(date.size());
+
+                Description description = new Description();
+                description.setText("Last 15 days");
+                description.setTextSize(15f);
+                description.setEnabled(true);
+                lineChart.setDescription(description);
+
+                for (int i = 0; i < test.size(); i++){
+                    System.out.println(i+": "+test.get(i));
+                }
+
+                lineData.addDataSet(lineDataSet);
+                lineChart.setData(lineData);
+                lineChart.invalidate();
+
             }
         });
 

@@ -27,7 +27,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Button btnCreateAcc;
-    private TextInputEditText etFullname, etUsername, etEmail, etPassword, etConfirmPassword;
+    private TextInputEditText etFullname, etUsername, etEmail, etPassword, etConfirmPassword, etPhone;
     ConstraintLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         etFullname = findViewById(R.id.etFullname);
         etUsername = findViewById(R.id.etUsername);
         etEmail = findViewById(R.id.etEmail);
+        etPhone = findViewById(R.id.etPhone);
         etPassword = findViewById(R.id.etPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
         layout = findViewById(R.id.createAccountLayout);
@@ -56,13 +57,14 @@ public class CreateAccountActivity extends AppCompatActivity {
         String fullName = etFullname.getText().toString().trim();
         String username = etUsername.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
+        String phone = etPhone.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
         String type = "normal";
         String status = "Active";
         Boolean validation;
 
-        validation = checkValidation(fullName, username, email, password, confirmPassword);
+        validation = checkValidation(fullName, username, email, phone, password, confirmPassword);
 
         if(!validation){
             return;
@@ -74,7 +76,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
 
-                                User user = new User(fullName, username, email, type, status, FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                User user = new User(fullName, username, email, type, status, FirebaseAuth.getInstance().getCurrentUser().getUid(), phone);
                                 FirebaseDatabase.getInstance().getReference("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -106,7 +108,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     }
 
-    private Boolean checkValidation(String fullName, String username, String email, String password, String confirmPassword) {
+    private Boolean checkValidation(String fullName, String username, String email, String phone, String password, String confirmPassword) {
         if(fullName.isEmpty()){
             etFullname.setError("Full Name is Required");
             etFullname.requestFocus();
@@ -124,6 +126,13 @@ public class CreateAccountActivity extends AppCompatActivity {
             etEmail.requestFocus();
             return false;
         }
+
+        if (phone.isEmpty()){
+            etPhone.setError("Phone number is required");
+            etPhone.requestFocus();
+            return false;
+        }
+
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             etEmail.setError("Please provide valid email");
             etEmail.requestFocus();

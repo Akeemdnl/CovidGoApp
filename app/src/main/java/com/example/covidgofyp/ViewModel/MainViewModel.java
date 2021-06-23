@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import com.example.covidgofyp.Model.CovidData;
 import com.example.covidgofyp.Model.CovidGlobalData;
+import com.example.covidgofyp.Model.TimelineData;
 import com.example.covidgofyp.Model.TopCountriesData;
 import com.example.covidgofyp.Repositories.CovidDataRepo;
 import com.github.mikephil.charting.data.BarData;
@@ -26,6 +27,7 @@ public class MainViewModel extends AndroidViewModel {
     private CovidDataRepo covidDataRepo;
     private MutableLiveData<CovidGlobalData> covidGlobalData;
     private MutableLiveData<List<TopCountriesData>> chartData;
+    private MutableLiveData<List<TimelineData>> lineChartData;
     Context context;
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -34,6 +36,7 @@ public class MainViewModel extends AndroidViewModel {
         covidData = covidDataRepo.setCovidData(context);
         covidGlobalData = covidDataRepo.setCovidGlobalData(context);
         chartData = covidDataRepo.setTopCountries(context);
+        lineChartData = covidDataRepo.setTimelineData(context);
 
     }
 
@@ -48,4 +51,6 @@ public class MainViewModel extends AndroidViewModel {
     public MutableLiveData<List<TopCountriesData>> getChartData() {
         return chartData;
     }
+
+    public MutableLiveData<List<TimelineData>> getLineChartData() {return lineChartData;}
 }

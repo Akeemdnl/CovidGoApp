@@ -3,6 +3,7 @@ package com.example.covidgofyp.View;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -60,10 +61,10 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
         holder.ngoAdminStatusNric.setText(ngoFormList.get(position).getNric());
         holder.ngoAdminStatusAddress.setText(ngoFormList.get(position).getAddress());
         holder.ngoAdminStatusDescription.setText(ngoFormList.get(position).getAidDescription());
-        holder.ngoAdminStatus.setText(ngoFormList.get(position).getStatus());
         holder.ngoAdminStatusUsername.setText(ngoFormList.get(position).getUsername());
-        String status = ngoFormList.get(position).getStatus();
 
+        String status = ngoFormList.get(position).getStatus();
+        holder.ngoAdminStatus.setText(status);
         if(status.equals("Processing")){
             holder.imgNgoStatus.setImageResource(R.drawable.hourglass);
         }else if (status.equals("Approved")){
@@ -71,11 +72,13 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
             holder.btnApprove.setVisibility(View.GONE);
             holder.btnDecline.setVisibility(View.GONE);
             holder.btnDelete.setVisibility(View.VISIBLE);
+            holder.ngoAdminStatus.setTextColor(Color.GREEN);
         }else if (status.equals("Declined")){
             holder.imgNgoStatus.setImageResource(R.drawable.declined);
             holder.btnApprove.setVisibility(View.GONE);
             holder.btnDecline.setVisibility(View.GONE);
             holder.btnDelete.setVisibility(View.VISIBLE);
+            holder.ngoAdminStatus.setTextColor(Color.RED);
         }
 
         holder.details.setOnClickListener(new View.OnClickListener() {

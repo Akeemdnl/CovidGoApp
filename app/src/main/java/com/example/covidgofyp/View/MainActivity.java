@@ -6,11 +6,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.covidgofyp.Model.User;
 import com.example.covidgofyp.R;
@@ -24,6 +26,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,11 +52,27 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment mainFragment = new CovidFragment();
         final Fragment secondFragment = new NgoFragment();
-        final Fragment thirdFragment = new HealthFragment();
+        final Fragment thirdFragment = new HealthStatusFragment();
 
         if(savedInstanceState == null) {
             getFragment(mainFragment);
         }
+
+        Dexter.withContext(this).withPermissions(new String[]{
+                Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR
+        }).withListener(new MultiplePermissionsListener() {
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+//                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+//                startActivity(intent);
+//                finish();
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+
+            }
+        }).check();
 
         btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

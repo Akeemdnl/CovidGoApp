@@ -2,19 +2,20 @@ package com.example.covidgofyp.Model;
 
 public class User {
 
-    public String fullname, username, email, type, status, userId;
+    public String fullname, username, email, type, status, userId, phone;
 
     public User() {
 
     }
 
-    public User(String fullname, String username, String email, String type, String status, String userId) {
+    public User(String fullname, String username, String email, String type, String status, String userId, String phone) {
         this.fullname = fullname;
         this.username = username;
         this.email = email;
         this.type = type;
         this.status = status;
         this.userId = userId;
+        this.phone = phone;
     }
 
     public String getFullname() {
@@ -63,5 +64,13 @@ public class User {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

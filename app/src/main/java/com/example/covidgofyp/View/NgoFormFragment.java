@@ -75,8 +75,10 @@ public class NgoFormFragment extends Fragment {
                 User userProfile = snapshot.getValue(User.class);
                 if(userProfile != null){
                     String fullname = userProfile.fullname;
+                    String phone = userProfile.phone;
                     username = userProfile.username;
                     ngoFullName.setText(fullname);
+                    ngoPhoneNum.setText(phone);
                 }
             }
 

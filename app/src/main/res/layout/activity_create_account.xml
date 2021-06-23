@@ -80,6 +80,23 @@
                 android:fontFamily="@font/nunito_sans" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Phone Number"
+            app:boxBackgroundColor="#D9C1FF"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_sans" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!--        <com.google.android.material.textfield.TextInputLayout-->
         <!--            android:id="@+id/txtNric"-->
         <!--            android:layout_width="match_parent"-->
