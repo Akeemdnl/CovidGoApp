@@ -50,6 +50,7 @@ public class AdminUserAdapter extends FirebaseRecyclerAdapter<User, AdminUserAda
         holder.type.setText(model.getType());
         holder.status.setText(model.getStatus());
         holder.userId.setText(model.getUserId());
+        holder.phone.setText(model.getPhone());
         String status = model.getStatus();
 
         if(status.equals("Disabled")){
@@ -190,7 +191,7 @@ public class AdminUserAdapter extends FirebaseRecyclerAdapter<User, AdminUserAda
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView username, fullname, email, status, type, userId;
+        TextView username, fullname, email, status, type, userId, phone;
         CardView cardView;
         LinearLayout hiddenView;
         ImageView details;
@@ -204,6 +205,7 @@ public class AdminUserAdapter extends FirebaseRecyclerAdapter<User, AdminUserAda
             email = itemView.findViewById(R.id.adminUserEmail);
             type = itemView.findViewById(R.id.adminUserType);
             status = itemView.findViewById(R.id.adminUserStatus);
+            phone = itemView.findViewById(R.id.adminUserPhone);
             cardView = itemView.findViewById(R.id.cvAdminUsers);
             hiddenView = itemView.findViewById(R.id.adminUserHiddenView);
             details = itemView.findViewById(R.id.adminUsersDetail);

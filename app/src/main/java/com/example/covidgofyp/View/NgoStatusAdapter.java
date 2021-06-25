@@ -35,6 +35,7 @@ public class NgoStatusAdapter extends FirebaseRecyclerAdapter<NgoForm, NgoStatus
         holder.ngoStatusNric.setText(model.getNric());
         holder.ngoStatusAddress.setText(model.getAddress());
         holder.ngoStatusDescription.setText(model.getAidDescription());
+        holder.ngoEmail.setText(model.getEmail());
         String status = model.getStatus();
 
         switch (status) {
@@ -80,7 +81,7 @@ public class NgoStatusAdapter extends FirebaseRecyclerAdapter<NgoForm, NgoStatus
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView ngoStatusDate, ngoStatusFullname, ngoStatusPhoneNum, ngoStatusNric, ngoStatusAddress, ngoStatusDescription, ngoStatus;
+        TextView ngoStatusDate, ngoStatusFullname, ngoStatusPhoneNum, ngoStatusNric, ngoStatusAddress, ngoStatusDescription, ngoStatus, ngoEmail;
         //TextView details;
         ImageView imgNgoStatus, details;
         LinearLayout hiddenView;
@@ -94,6 +95,7 @@ public class NgoStatusAdapter extends FirebaseRecyclerAdapter<NgoForm, NgoStatus
             ngoStatusAddress = itemView.findViewById(R.id.ngoStatusAddrress);
             ngoStatusDescription = itemView.findViewById(R.id.ngoStatusDescription);
             ngoStatus = itemView.findViewById(R.id.ngoStatus);
+            ngoEmail = itemView.findViewById(R.id.ngoStatusEmail);
             imgNgoStatus = itemView.findViewById(R.id.imgNgoStatus);
             details = itemView.findViewById(R.id.ngoStatusDetails);
             hiddenView = itemView.findViewById(R.id.ngoStatusHidden);

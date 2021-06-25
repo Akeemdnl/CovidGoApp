@@ -62,6 +62,18 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
         holder.ngoAdminStatusAddress.setText(ngoFormList.get(position).getAddress());
         holder.ngoAdminStatusDescription.setText(ngoFormList.get(position).getAidDescription());
         holder.ngoAdminStatusUsername.setText(ngoFormList.get(position).getUsername());
+        holder.ngoEmail.setText(ngoFormList.get(position).getEmail());
+        holder.ngoMarital.setText(ngoFormList.get(position).getMarital());
+        holder.ngoOccupation.setText(ngoFormList.get(position).getOccupation());
+        String salary = ngoFormList.get(position).getSalary();
+
+        if (salary.equals("1")){
+            holder.ngoSalary.setText("< RM1000");
+        }else if (salary.equals("2")){
+            holder.ngoSalary.setText("> RM1000 and < RM3000");
+        }else if (salary.equals("3")){
+            holder.ngoSalary.setText("> RM3000");
+        }
 
         String status = ngoFormList.get(position).getStatus();
         holder.ngoAdminStatus.setText(status);
@@ -198,14 +210,7 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
                                         .setAction("DISMISS", new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                //close snackbar
-//                                                fragment = new AdminNgoApplicationFragment();
-//                                                FragmentManager fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
-//                                                fragmentManager.beginTransaction()
-//                                                        .setReorderingAllowed(true)
-//                                                        .replace(R.id.containerAdmin, fragment,null )
-//                                                        .addToBackStack(null)
-//                                                        .commit();
+
                                             }
                                         }).show();
                             }
@@ -221,7 +226,8 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView key,ngoAdminStatusDate,ngoAdminUserId, ngoAdminStatusFullname, ngoAdminStatusPhoneNum, ngoAdminStatusNric, ngoAdminStatusAddress, ngoAdminStatusDescription, ngoAdminStatus, ngoAdminStatusUsername;
+        TextView ngoAdminStatusDate, ngoAdminStatusFullname, ngoAdminStatusPhoneNum, ngoAdminStatusNric, ngoAdminStatusAddress, ngoAdminStatusDescription, ngoAdminStatus, ngoAdminStatusUsername;
+        TextView ngoEmail, ngoMarital, ngoOccupation, ngoSalary;
         ImageView imgNgoStatus, details;
         LinearLayout hiddenView;
         CardView cardView;
@@ -237,6 +243,10 @@ public class AdminNgoStatusAdapter extends RecyclerView.Adapter<AdminNgoStatusAd
             ngoAdminStatusDescription = itemView.findViewById(R.id.ngoAdminStatusDescription);
             ngoAdminStatus = itemView.findViewById(R.id.ngoAdminStatus);
             ngoAdminStatusUsername = itemView.findViewById(R.id.ngoAdminStatusUsername);
+            ngoEmail = itemView.findViewById(R.id.ngoAdminStatusEmail);
+            ngoMarital = itemView.findViewById(R.id.ngoAdminStatusMarital);
+            ngoOccupation = itemView.findViewById(R.id.ngoAdminStatusOccupation);
+            ngoSalary = itemView.findViewById(R.id.ngoAdminStatusSalary);
             imgNgoStatus = itemView.findViewById(R.id.imgAdminNgoStatus);
             hiddenView = itemView.findViewById(R.id.ngoStatusHiddenView);
             cardView = itemView.findViewById(R.id.cvAdminNgoStatus);

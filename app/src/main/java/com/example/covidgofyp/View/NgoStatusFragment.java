@@ -33,6 +33,7 @@ public class NgoStatusFragment extends Fragment {
     private RecyclerView recyclerView;
     private NgoStatusAdapter adapter;
     private ProgressBar progressBar;
+
     public NgoStatusFragment() {
         // Required empty public constructor
     }
@@ -44,6 +45,7 @@ public class NgoStatusFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ngo_status, container, false);
         recyclerView = view.findViewById(R.id.rvNgoStatus);
         progressBar = view.findViewById(R.id.progressBarNgoStatus);
+        progressBar.setVisibility(View.VISIBLE);
         return view;
     }
 
@@ -58,6 +60,11 @@ public class NgoStatusFragment extends Fragment {
                 .setQuery(reference, NgoForm.class)
                 .build();
 
+        putDataInRecyclerView(options);
+
+    }
+
+    private void putDataInRecyclerView(FirebaseRecyclerOptions<NgoForm> options) {
         adapter = new NgoStatusAdapter(options);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ItemDecorator decorator = new ItemDecorator(30);

@@ -1,11 +1,11 @@
 package com.example.covidgofyp.Model;
 
 public class NgoForm {
-    public String fullname, phoneNum, nric, address, aidDescription, userId, status, date, username, key;
+    public String fullname, phoneNum, nric, address, aidDescription, userId, status, date, username, key, marital, occupation, salary, email;
 
     public NgoForm(){}
 
-    public NgoForm(String fullname, String phoneNum, String nric, String address, String aidDescription, String userId, String status, String date, String username, String key) {
+    public NgoForm(String fullname, String phoneNum, String nric, String address, String aidDescription, String userId, String status, String date, String username, String key, String marital, String occupation, String salary, String email) {
         this.fullname = fullname;
         this.phoneNum = phoneNum;
         this.nric = nric;
@@ -16,6 +16,10 @@ public class NgoForm {
         this.date = date;
         this.username = username;
         this.key = key;
+        this.marital = marital;
+        this.occupation = occupation;
+        this.salary = salary;
+        this.email = email;
     }
 
     public String getFullname() {
@@ -96,5 +100,37 @@ public class NgoForm {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getMarital() {
+        return marital;
+    }
+
+    public void setMarital(String marital) {
+        this.marital = marital;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

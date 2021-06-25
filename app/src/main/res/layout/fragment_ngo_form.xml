@@ -22,129 +22,209 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:fillViewport="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNgoForm">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tfFullname"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full name"
-            app:boxBackgroundColor="#D9C1FF"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoFullname"
-                android:fontFamily="@font/nunito_sans"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tfPhoneNum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone Number"
-            app:boxBackgroundColor="#D9C1FF"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            android:layout_marginBottom="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoPhoneNum"
-                android:fontFamily="@font/nunito_sans"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tfNRIC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="NRIC"
-            app:boxBackgroundColor="#D9C1FF"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            android:layout_marginBottom="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoNRIC"
-                android:fontFamily="@font/nunito_sans"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tfAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Address"
-            app:boxBackgroundColor="#D9C1FF"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            android:layout_marginBottom="10dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoAddress"
-                android:fontFamily="@font/nunito_sans"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfFullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:maxLines="5"
-                android:minLines="3"
-                android:gravity="start"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Full name"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tfAidDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Description of aid needed"
-            app:boxBackgroundColor="#D9C1FF"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            android:layout_marginBottom="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ngoFullname"
+                    android:fontFamily="@font/nunito_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ngoAidDescription"
-                android:fontFamily="@font/nunito_sans"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfPhoneNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:maxLines="5"
-                android:minLines="3"
-                android:gravity="start"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="Phone Number"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-            android:fontFamily="@font/nunito_sans"
-            android:text="*Please ensure that the information given are correct"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ngoPhoneNum"
+                    android:inputType="number"
+                    android:fontFamily="@font/nunito_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSubmitNgo"
-            android:layout_width="103dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Submit"
-            android:textAppearance="?attr/textAppearanceButton"
-            app:cornerRadius="20dp"
-            app:elevation="30dp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
 
-    </LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ngoEmail"
+                    android:fontFamily="@font/nunito_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfNRIC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="NRIC"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ngoNRIC"
+                    android:fontFamily="@font/nunito_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfMarital"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Marital Status"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
+
+               <AutoCompleteTextView
+                   android:id="@+id/ngoMarital"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfOccupation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Occupation"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ngoOccupation"
+                    android:fontFamily="@font/nunito_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfSalary"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Salary Range"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/ngoSalary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ngoAddress"
+                    android:fontFamily="@font/nunito_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:maxLines="5"
+                    android:minLines="3"
+                    android:gravity="start"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tfAidDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description of aid needed"
+                app:boxBackgroundColor="#D9C1FF"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_marginBottom="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ngoAidDescription"
+                    android:fontFamily="@font/nunito_sans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:maxLines="5"
+                    android:minLines="3"
+                    android:gravity="start"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                android:fontFamily="@font/nunito_sans"
+                android:text="*Please ensure that the information given are correct"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmitNgo"
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Submit"
+                android:textAppearance="?attr/textAppearanceButton"
+                app:cornerRadius="20dp"
+                app:elevation="30dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AdminMainFragment extends Fragment {
 
     DatabaseReference reference;
-    CardView cvNgoApplication, cvHealthApplication, cvUsers;
+    CardView cvNgoApplication, cvUsers;
     ImageButton btnSignOut;
     TextView counter;
     Fragment adminNgoApplication = new AdminNgoApplicationFragment();
@@ -44,7 +44,6 @@ public class AdminMainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_admin_main, container, false);
         cvNgoApplication = view.findViewById(R.id.cvNgoApplication);
-        cvHealthApplication = view.findViewById(R.id.cvHealthApplication);
         cvUsers = view.findViewById(R.id.cvUsers);
         btnSignOut = view.findViewById(R.id.btnSignOut);
         counter = view.findViewById(R.id.counter);

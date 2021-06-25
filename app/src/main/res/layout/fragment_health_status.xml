@@ -95,7 +95,7 @@
             android:id="@+id/card_appointment_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:visibility="gone"
             android:gravity="center">
 
             <LinearLayout
