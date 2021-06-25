@@ -135,7 +135,7 @@
                                             android:id="@+id/tvTotalCases"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="CaseNum"
+                                            android:text=""
                                             android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
@@ -143,7 +143,7 @@
                                             android:id="@+id/tvNewCases"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="NewCaseNum"
+                                            android:text=""
                                             android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
@@ -176,7 +176,7 @@
                                             android:id="@+id/tvActiveCases"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="CaseNum"
+                                            android:text=""
                                             android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
@@ -208,7 +208,7 @@
                                             android:id="@+id/tvTotalRecovered"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="CaseNum"
+                                            android:text=""
                                             android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
@@ -216,7 +216,7 @@
                                             android:id="@+id/tvNewRecovered"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="NewRecoveredNum"
+                                            android:text=""
                                             android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
@@ -249,7 +249,7 @@
                                             android:id="@+id/tvTotalDeaths"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="CaseNum"
+                                            android:text=""
                                             android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
@@ -257,7 +257,7 @@
                                             android:id="@+id/tvNewDeaths"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="NewDeathsdNum"
+                                            android:text=""
                                             android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
                                 </LinearLayout>
@@ -289,7 +289,7 @@
                                             android:id="@+id/tvCritical"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="CaseNum"
+                                            android:text=""
                                             android:fontFamily="@font/nunito_sans"
                                             android:textAppearance="?attr/textAppearanceHeadline6" />
 
@@ -388,11 +388,11 @@
                         </com.google.android.material.card.MaterialCardView>
 
                         <TextView
-                            android:id="@+id/tvTopCountries"
+                            android:id="@+id/tvTrend"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
-                            android:text="Top 10 Countries"
+                            android:text="Malaysia Case Trend"
                             android:fontFamily="@font/nunito_sans_semibold"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
@@ -417,6 +417,15 @@
                                 </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/tvTopCountries"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Top 10 Countries"
+                            android:fontFamily="@font/nunito_sans_semibold"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cvTopCountries"

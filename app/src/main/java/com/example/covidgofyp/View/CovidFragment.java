@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.example.covidgofyp.Model.CovidData;
 import com.example.covidgofyp.Model.CovidGlobalData;
+import com.example.covidgofyp.Model.NewCasesData;
 import com.example.covidgofyp.Model.TimelineData;
 import com.example.covidgofyp.Model.TopCountriesData;
 import com.example.covidgofyp.R;
@@ -47,6 +48,11 @@ import com.github.mikephil.charting.utils.Utils;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Time;
 import java.text.NumberFormat;
@@ -75,9 +81,11 @@ public class CovidFragment extends Fragment  {
     private ImageButton btnSignOut;
     private double dTotalCases, dActiveCases, dTotalRecovered, dTotalDeaths, dNewCases, dNewRecovered, dNewDeaths, dCritical;
     private double dGlobalTotal, dGlobalActive, dGlobalRecovered, dGlobalDeaths;
-    private NumberFormat numberFormat = NumberFormat.getInstance();
+    private final NumberFormat numberFormat = NumberFormat.getInstance();
     private ScrollView scrollView;
     private CardView cvTopBar;
+    private DatabaseReference reference;
+    String newCaseData, newDeathData, newRecoveredData;
 
     public CovidFragment() {
         // Required empty public constructor
@@ -159,6 +167,24 @@ public class CovidFragment extends Fragment  {
         mainViewModel.getCovidData().observe(this, new Observer<CovidData>() {
             @Override
             public void onChanged(CovidData covidData) {
+                reference = FirebaseDatabase.getInstance().getReference("Covid");
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        NewCasesData data = snapshot.getValue(NewCasesData.class);
+                        if (data != null){
+                            newCaseData = data.newCases;
+                            newDeathData = data.newDeaths;
+                            newRecoveredData = data.newRecovered;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
                 numberFormat.setGroupingUsed(true);
 
                 totalCases = covidData.getTotalCases();
@@ -174,13 +200,20 @@ public class CovidFragment extends Fragment  {
                 dTotalDeaths = Double.parseDouble(totalDeaths);
 
                 newCases = covidData.getNewCases();
-                dNewCases = Double.parseDouble(newCases);
-
                 newRecovered = covidData.getNewRecovered();
-                dNewRecovered = Double.parseDouble(newRecovered);
-
                 newDeaths = covidData.getNewDeaths();
-                dNewDeaths = Double.parseDouble(newDeaths);
+                if (newCases.equals("0")){
+                    dNewCases = Double.parseDouble(newCaseData);
+                    dNewRecovered = Double.parseDouble(newRecoveredData);
+                    dNewDeaths = Double.parseDouble(newDeathData);
+                }else {
+                    dNewCases = Double.parseDouble(newCases);
+                    dNewRecovered = Double.parseDouble(newRecovered);
+                    dNewDeaths = Double.parseDouble(newDeaths);
+
+                    NewCasesData newData = new NewCasesData(newCases, newRecovered, newDeaths);
+                    reference.setValue(newData);
+                }
 
                 critical = covidData.getCritical();
                 dCritical = Double.parseDouble(critical);
@@ -189,22 +222,25 @@ public class CovidFragment extends Fragment  {
                 tvActiveCases.setText(numberFormat.format(dActiveCases));
                 tvTotalRecovered.setText(numberFormat.format(dTotalRecovered));
                 tvTotalDeaths.setText(numberFormat.format(dTotalDeaths));
+                tvNewCases.setText("+"+numberFormat.format(dNewCases));
+                tvNewRecovered.setText("+"+numberFormat.format(dNewRecovered));
+                tvNewDeaths.setText("+"+numberFormat.format(dNewDeaths));
 
-                if(!newCases.equals("0")){
-                    tvNewCases.setText("+"+numberFormat.format(dNewCases));
-                }else {
-                    tvNewCases.setVisibility(View.GONE);
-                }
-                if(!newRecovered.equals("0")){
-                    tvNewRecovered.setText("+"+numberFormat.format(dNewRecovered));
-                }else {
-                    tvNewRecovered.setVisibility(View.GONE);
-                }
-                if(!newDeaths.equals("0")){
-                    tvNewDeaths.setText("+"+numberFormat.format(dNewDeaths));
-                }else {
-                    tvNewDeaths.setVisibility(View.GONE);
-                }
+//                if(!newCases.equals("0")){
+//                    tvNewCases.setText("+"+numberFormat.format(dNewCases));
+//                }else {
+//                    tvNewCases.setVisibility(View.GONE);
+//                }
+//                if(!newRecovered.equals("0")){
+//                    tvNewRecovered.setText("+"+numberFormat.format(dNewRecovered));
+//                }else {
+//                    tvNewRecovered.setVisibility(View.GONE);
+//                }
+//                if(!newDeaths.equals("0")){
+//                    tvNewDeaths.setText("+"+numberFormat.format(dNewDeaths));
+//                }else {
+//                    tvNewDeaths.setVisibility(View.GONE);
+//                }
 
                 tvCritical.setText(numberFormat.format(dCritical));
             }
@@ -240,13 +276,11 @@ public class CovidFragment extends Fragment  {
                 List<Entry> entries = new ArrayList<>();
                 TimelineData data;
                 ArrayList<String> date = new ArrayList<>();
-                ArrayList<Integer> test = new ArrayList<Integer>();
                 LineData lineData = new LineData();
                 for (int i = 0; i < timelineData.size(); i++){
                     data = timelineData.get(i);
                     date.add(data.getDate());
                     int cases = Integer.parseInt(data.getCases());
-                    test.add(cases);
                     entries.add(new Entry(i, cases));
                 }
 
@@ -282,10 +316,6 @@ public class CovidFragment extends Fragment  {
                 description.setTextSize(15f);
                 description.setEnabled(true);
                 lineChart.setDescription(description);
-
-                for (int i = 0; i < test.size(); i++){
-                    System.out.println(i+": "+test.get(i));
-                }
 
                 lineData.addDataSet(lineDataSet);
                 lineChart.setData(lineData);
